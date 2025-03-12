@@ -3,7 +3,7 @@ import 'codemirror/lib/codemirror.css';
 import '@/assets/codemirror_overrides.css';
 import 'codemirror/mode/markdown/markdown';
 
-export function editorFromTextArea(model, textAreaEl, size = '80px') {
+export function useEditorFromTextArea(model, textAreaEl, size = '80px') {
   const editor = CodeMirror.fromTextArea(textAreaEl, {
     mode: 'markdown',
     lineWrapping: true,
