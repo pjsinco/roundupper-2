@@ -1,7 +1,9 @@
 import Constants from '@/constants/aoa-general';
+import { marked } from 'marked';
 
 export function useAoaGeneralRenders() {
-  function paragraph(text) {
+  function paragraph({ tokens }) {
+    const text = this.parser.parseInline(tokens);
     //return `
     //  <p style="margin: 0 0 0 0;">${text}<br>&nbsp;</p>\n`;
     const pStyle = Constants.Styles.P_STYLE;
@@ -9,8 +11,10 @@ export function useAoaGeneralRenders() {
       <p style="${pStyle.join('; ')}">${text}</p>`;
   }
 
-  function heading(text, level) {
-    switch (level) {
+  function heading({ tokens, depth }) {
+    const text = this.parser.parseInline(tokens);
+
+    switch (depth) {
       case 1:
         const h1Style = Constants.Styles.H1_STYLE;
         return `<h1 style="${h1Style.join('; ')}">${text}</h1>\n`;
@@ -39,7 +43,9 @@ export function useAoaGeneralRenders() {
     }
   }
 
-  function link(href, title, text) {
+  function link({ href, title, tokens }) {
+    const text = this.parser.parseInline(tokens);
+
     const linkStyle = Constants.Styles.LINK_STYLE.join('; ');
     return `
       <a href="${href}" 
@@ -47,7 +53,17 @@ export function useAoaGeneralRenders() {
          title="${title}">${text}</a>`;
   }
 
-  function list(body, ordered) {
+  // function list(body, ordered) {
+  function list(token) {
+    const ordered = token.ordered;
+    const start = token.start;
+
+    let body = '';
+    for (let j = 0; j < token.items.length; j++) {
+      const item = token.items[j];
+      body += this.listitem(item);
+    }
+
     const divStyles = [
       'text-align: left',
       //'color: #141416',
@@ -83,7 +99,8 @@ export function useAoaGeneralRenders() {
         <${listType}></div>\n`;
   }
 
-  function image(href, title, text) {
+  // function image(href, title, text) {
+  function image({ href, title, text, tokens }) {
     return `
       <img src="${href}" style="max-width: 600px; border: 0; display: block; outline: none; text-decoration: none; height: auto; font-size: 13px;" title=${title} alt="${text}" />`;
   }

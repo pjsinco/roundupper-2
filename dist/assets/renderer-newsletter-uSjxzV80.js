@@ -1,5 +1,5 @@
-import{b as o,S as c,u as h}from"./styles-base-aoa-general-_fm_AVFK.js";const{P_STYLE:d,H1_STYLE:u}=c,r=["margin-bottom: 0px","margin-top: 0",`font-family: ${o.fontFamily}`,"font-size: 18px","font-weight: bold","line-height: 25.2px","text-align: left",`color: ${o.colors.headline}`],y={P_STYLE:d,H1_STYLE:u,LINK_STYLE:[`color: ${o.colors.primary}`,"font-weight: inherit","text-decoration: underline"],H2_STYLE:r,H3_STYLE:r,H4_STYLE:["margin-bottom: 0px","margin-top: 0",`font-family: ${o.fontFamily}`,"font-size: 16px","font-weight: bold","line-height: 24px","text-align: left",`color: ${o.colors.headline}`],H5_STYLE:r},p={fullWidth:600,liveAreaWidth:528},e={DEFAULT_TEXT_MD:`Fusce dapibus, **tellus ac cursus commodo,** tortor mauris condimentum nibh, ut fermentum *massa* justo [Osteopathic.org](https://osteopathic.org). Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Maecenas faucibus mollis interdum.
-`,Styles:y,Layout:p};function b(){const{paragraph:a,list:i}=h();return{renderer:{paragraph:a,list:i,link(t,l,n){const s=e.Styles.LINK_STYLE;return`
+import{b as o,a as c,u as h}from"./styles-base-aoa-general-KjxKfwv1.js";const{P_STYLE:d,H1_STYLE:u}=c,r=["margin-bottom: 0px","margin-top: 0",`font-family: ${o.fontFamily}`,"font-size: 18px","font-weight: bold","line-height: 25.2px","text-align: left",`color: ${o.colors.headline}`],y={P_STYLE:d,H1_STYLE:u,LINK_STYLE:[`color: ${o.colors.primary}`,"font-weight: inherit","text-decoration: underline"],H2_STYLE:r,H3_STYLE:r,H4_STYLE:["margin-bottom: 0px","margin-top: 0",`font-family: ${o.fontFamily}`,"font-size: 16px","font-weight: bold","line-height: 24px","text-align: left",`color: ${o.colors.headline}`],H5_STYLE:r},p={fullWidth:600,liveAreaWidth:528},e={DEFAULT_TEXT_MD:`Fusce dapibus, **tellus ac cursus commodo,** tortor mauris condimentum nibh, ut fermentum *massa* justo [Osteopathic.org](https://osteopathic.org). Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Maecenas faucibus mollis interdum.
+`,Styles:y,Layout:p};function $(){const{paragraph:a,list:i}=h();return{renderer:{paragraph:a,list:i,link(t,l,n){const s=e.Styles.LINK_STYLE;return`
         <a href="${t}" 
            style="${s.join("; ")}"
            title="${l}">${n}</a>`},heading(t,l){switch(l){case 1:return`<h1 style="${e.Styles.H1_STYLE.join("; ")}">${t}</h1>
@@ -20,4 +20,4 @@ import{b as o,S as c,u as h}from"./styles-base-aoa-general-_fm_AVFK.js";const{P_
               </table>
             </td>
           </tr>
-        </table>`}}}}export{e as C,b as u};
+        </table>`}}}}export{e as C,$ as u};
