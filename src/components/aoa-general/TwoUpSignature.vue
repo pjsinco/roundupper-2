@@ -1,11 +1,11 @@
 <script>
 import { nextTick, ref, computed, onMounted, watch } from 'vue';
 
+import * as CodeMirror from 'codemirror';
 import Workspace from '@/components/Workspace.vue';
 import { copyHtml, copyText } from '@/composables/useButtonFunctions';
 import { useRendererForAoaGeneral } from '@/composables/renderer-aoa-general';
 import { editorFromTextArea } from '@/composables/useEditorFromTextArea';
-import * as CodeMirror from 'codemirror';
 import 'codemirror/lib/codemirror.css';
 import 'codemirror/mode/markdown/markdown';
 import { marked } from 'marked';

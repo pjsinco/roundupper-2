@@ -1,9 +1,59 @@
 import { useAoaGeneralRenders } from '@/composables/styles-base-aoa-general';
 import Constants from '@/constants/aoa-general';
+import { marked } from 'marked';
 
 export function useRendererForExperiment() {
-  // don't use heading
   const { paragraph, link, image, list } = useAoaGeneralRenders();
+
+  // const walkTokens = function (token) {
+  //   if (token.type !== 'heading') {
+  //     return;
+  //   }
+
+  //   const match = token.text.match(/^(.*)\s+\{color=([^}]+)\}\s*$/);
+  //   if (!match) {
+  //     return;
+  //   }
+
+  //   console.log('okgottamatch');
+  //   console.log('match', match);
+
+  //   // 1. Keep only the visible heading text
+  //   token.text = match[1];
+
+  //   // 2. Store the color so the renderer can use it
+  //   token.color = match[2].trim();
+
+  //   // 3. Rebuild the inline child tokens on the new text
+  //   token.tokens = marked.Lexer.lexInline(token.text);
+  // };
+
+  // const tokenizer = {
+  //   heading(src) {
+  //     // Check for [color=...] at the start of the text
+  //     console.log('src', src);
+  //     const colorMatch = src.match(/^\[color=([^\]]+)\]\s+(.*)$/i);
+  //     let color = null;
+
+  //     console.log('colorMatch', colorMatch);
+
+  //     if (colorMatch) {
+  //       color = colorMatch[1].trim();
+  //       text = colorMatch[2].trim();
+
+  //       return {
+  //         type: 'heading',
+  //         raw: match,
+  //         depth,
+  //         text,
+  //         color,
+  //       };
+  //     }
+
+  //     // return false to use original heading tokenizer
+  //     return false;
+  //   },
+  // };
 
   // TODO
   // set up our own heading
@@ -37,6 +87,11 @@ export function useRendererForExperiment() {
     }
   };
 
+  // const heading = function ({ tokens, depth }) {
+  //   console.log('tokens', tokens);
+  //   console.log('depth', depth);
+  // };
+
   const renderer = {
     paragraph,
     heading,
@@ -45,5 +100,6 @@ export function useRendererForExperiment() {
     image,
   };
 
+  // return { renderer, walkTokens };
   return { renderer };
 }

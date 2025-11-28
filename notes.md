@@ -27,3 +27,6 @@ pandoc \
 
 ### Sat May 25 07:26:55 2024 CDT
 * [Converting Plain Text To Encoded HTML With Vanilla JavaScript — Smashing Magazine](https://www.smashingmagazine.com/2024/04/converting-text-encoded-html-vanilla-javascript/)
+
+### Fri Nov 28 12:52:24 2025 EST
+* [Generic directives/plugins syntax - Extensions - CommonMark Discussion](https://talk.commonmark.org/t/generic-directives-plugins-syntax/444)

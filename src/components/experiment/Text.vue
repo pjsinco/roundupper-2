@@ -18,9 +18,9 @@ export default {
     const defaultInput = `# Lorem ipsum dolor sit amet\nConsectetur adipisicing **elit**, sed do *eiusmod* [tempor incididunt](https://osteopathic.org) ut labore et dolore magna aliqua.\n`;
     const input = ref(defaultInput);
 
-    const { renderer } = useRendererForExperiment();
+    const { renderer, walkTokens } = useRendererForExperiment();
 
-    marked.use({ renderer });
+    marked.use({ renderer, walkTokens });
 
     marked.setOptions({
       gfm: true,

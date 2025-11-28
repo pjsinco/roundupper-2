@@ -1,10 +1,10 @@
 <script>
+import * as CodeMirror from 'codemirror';
 import { nextTick, ref, computed, onMounted } from 'vue';
 import Workspace from '@/components/Workspace.vue';
 import { copyHtml, copyText } from '@/composables/useButtonFunctions';
 import { find } from 'lodash-es';
 import { useRendererForAoaGeneral } from '@/composables/renderer-aoa-general';
-import * as CodeMirror from 'codemirror';
 import 'codemirror/lib/codemirror.css';
 import 'codemirror/mode/markdown/markdown';
 import { marked } from 'marked';

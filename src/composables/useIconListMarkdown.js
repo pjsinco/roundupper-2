@@ -1,5 +1,5 @@
-import { marked } from 'marked';
 import * as CodeMirror from 'codemirror';
+import { marked } from 'marked';
 import 'codemirror/lib/codemirror.css';
 import 'codemirror/mode/markdown/markdown';
 import { mdRendererForAoaGeneral } from '@/composables/useMdRendererForAoaGeneral';
