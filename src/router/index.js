@@ -4,6 +4,7 @@ import TheDO from '../pages/TheDO.vue';
 import AffiliateNews from '../pages/AffiliateNews.vue';
 import AoaGeneral from '../pages/AoaGeneral.vue';
 import Newsletter from '../pages/Newsletter.vue';
+import Experiment from '../pages/Experiment.vue';
 
 const navigateToDefault = function (basePath, defaultPath) {
   return (to, _from) => {
@@ -24,6 +25,22 @@ const router = createRouter({
       path: '/',
       name: 'Home',
       component: Home,
+    },
+    {
+      path: '/experiment',
+      name: 'Experiment',
+      component: () => import('../pages/Experiment.vue'),
+      beforeEnter: navigateToDefault('/experiment', 'Experiment text'),
+      children: [
+        {
+          path: 'text',
+          name: 'Experiment text',
+          component: () => import('../components/experiment/Text.vue'),
+          meta: {
+            nickname: 'Experiment text',
+          },
+        },
+      ],
     },
     {
       path: '/the-do',

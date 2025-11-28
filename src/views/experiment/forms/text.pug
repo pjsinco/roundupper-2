@@ -1,0 +1,7 @@
+template(v-slot:form)
+  h1.component__title Text
+  div.form-group
+    label(for="input") Text (in Markdown)
+    textarea(id="input" v-model="input").form-control
+
+  include ../../includes/copy-button
