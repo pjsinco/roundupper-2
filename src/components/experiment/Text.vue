@@ -18,9 +18,14 @@ export default {
     const defaultInput = `# Lorem ipsum dolor sit amet\nConsectetur adipisicing **elit**, sed do *eiusmod* [tempor incididunt](https://osteopathic.org) ut labore et dolore magna aliqua.\n`;
     const input = ref(defaultInput);
 
-    const { renderer, walkTokens } = useRendererForExperiment();
+    const { renderer, walkTokens, attachListStyles, styleAttributesExtension } =
+      useRendererForExperiment();
 
-    marked.use({ renderer, walkTokens });
+    marked.use({
+      renderer,
+      walkTokens,
+      extensions: [styleAttributesExtension],
+    });
 
     marked.setOptions({
       gfm: true,
@@ -28,6 +33,9 @@ export default {
     });
 
     const output = computed(() => {
+      const tokens = marked.lexer(input.value);
+      marked.walkTokens(tokens, walkTokens);
+
       return marked(input.value);
     });
 
