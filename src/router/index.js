@@ -40,6 +40,14 @@ const router = createRouter({
             nickname: 'Experiment text',
           },
         },
+        {
+          path: 'highlight',
+          name: 'Experiment highlight',
+          component: () => import('../components/experiment/Highlight.vue'),
+          meta: {
+            nickname: 'Experiment highlight',
+          },
+        },
       ],
     },
     {

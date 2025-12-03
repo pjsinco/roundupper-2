@@ -1,0 +1,20 @@
+template(v-slot:form)
+  div.row
+    div.col-xs
+      h1.component__title Highlight
+
+  div.row
+    div.col-xs
+  div.form-group
+    label(for="input") Text (in Markdown)
+    textarea(id="input" v-model="input").form-control
+
+  div.row
+    div.col-xs-12
+      div.form-group
+        div.checkbox-inline.pull-right
+          label
+            input(type="checkbox" name="bleed" v-model="bleed")
+            | Bleed
+
+  include ../../includes/copy-button

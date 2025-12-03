@@ -1,0 +1,8 @@
+template(v-slot:render-container)
+  div(style="max-width: 600px; margin: 0 auto; padding: 0; background-color: transparent;")
+    div#rendered
+      table(border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%")
+        tbody
+          tr
+            td(align="left" class="pardot-region" pardot-region="" :style="tdStyle")
+              div(style="font-family: Arial, Helvetica, sans-serif; font-size: 16px; font-weight: normal; line-height: 24px; text-align: left; color: #2a2a2a;" v-html="output")
