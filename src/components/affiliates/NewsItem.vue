@@ -5,6 +5,7 @@ import { copyHtml, copyText } from '@/composables/useButtonFunctions';
 import { getRenderer } from '@/composables/useMdRendererForAffiliates';
 import { editorFromTextArea } from '@/composables/useEditorFromTextArea';
 import { marked } from 'marked';
+import { getBookmark } from '@/composables/useBookmark';
 
 export default {
   components: {
@@ -48,6 +49,8 @@ export default {
       //input.value = defaultInput;
     }
 
+    const bookmark = getBookmark();
+
     return {
       input,
       props,
@@ -55,6 +58,7 @@ export default {
       copy,
       copyTextVersion,
       output,
+      bookmark,
     };
   },
 };

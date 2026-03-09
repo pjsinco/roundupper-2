@@ -1,0 +1,24 @@
+template(v-slot:form)
+  h1.component__title Icon list
+
+  template(v-for="(item, i) in items")
+    div(v-if="item.enabled").item-group
+      h4 Icon list item #[span(v-if="numEnabled > 1" @click="handleDelete(item)").delete.pull-right &#x2715;]
+      div.form-group
+        label(:for="'imageUrl-' + item.id") Icon image URL
+        input(type="text" :id="'imageUrl-' + item.id" v-model="item.imageUrl").form-control
+        //- p.help-block Icon size: 100px x 100px
+      div.form-group
+        label(:for="'iconLink-' + item.id") Icon link (optional)
+        input(type="text" :id="'iconLink-' + item.id" v-model="item.iconLink").form-control
+        //- p.help-block Icon size: 100px x 100px
+
+      div.form-group
+        label(:for="'input-' + item.id") Text (in Markdown)
+        textarea(:id="'input-' + item.id" v-model="item.input" rows="4").form-control
+        //- p.help-block Markdown
+
+  div.form-group.clearfix
+    button(@click="handleAdd").btn.btn-sm.btn-default.pull-right Add item
+
+  include ../../includes/copy-button

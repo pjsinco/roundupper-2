@@ -1,3 +1,5 @@
+import Styles from './styles';
+
 export default {
   SECTION_HEADERS: [
     {
@@ -71,5 +73,6 @@ export default {
       url: 'https://resources.osteopathic.org/l/979203/2024-01-05/cqldk/979203/1704489954La84P2bW/affiliate_header_soma_news.png',
     },
   ],
-};
 
+  Styles,
+};

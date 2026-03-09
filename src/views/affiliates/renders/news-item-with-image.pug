@@ -1,6 +1,7 @@
 template(v-slot:render-container)
   div(style="max-width: 590px; margin: 0 auto; background-color: #fff;")
     div#rendered
+      a(:id="bookmark" :name="bookmark")
       div(align="left" bgcolor="#ffffff")
         h3(style="margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 6px; font-family: Arial, Helvetica, sans-serif; font-size: 22px; font-weight: normal; line-height: 33px; text-align: left; color: #235685;")
           | {{ headline }}

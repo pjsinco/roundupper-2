@@ -14,6 +14,7 @@ import { copyHtml, copyText } from '@/composables/useButtonFunctions';
 import { useButtonSetup } from '@/composables/button-setup';
 import { useAddImageAttributes } from '@/composables/add-image-attributes';
 import { marked } from 'marked';
+import { getBookmark } from '@/composables/useBookmark';
 import Constants from '@/constants/newsletter';
 
 export default {
@@ -56,7 +57,7 @@ export default {
     const includeImage = ref(false);
     const includeButton = ref(true);
     const dividerAbove = ref(true);
-    const bookmark = `bookmark-${Math.floor(1000 * Math.random() * 4000)}`;
+    const bookmark = getBookmark();
     const tabRef = ref({});
 
     const output = computed(() => {

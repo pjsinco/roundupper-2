@@ -5,6 +5,7 @@ import { getRenderer } from '@/composables/useMdRendererForAffiliates';
 import { editorFromTextArea } from '@/composables/useEditorFromTextArea';
 import { copyHtml, copyText } from '@/composables/useButtonFunctions';
 import { marked } from 'marked';
+import { getBookmark } from '@/composables/useBookmark';
 
 export default {
   components: {
@@ -59,6 +60,8 @@ export default {
       //altText.value = '';
     }
 
+    const bookmark = getBookmark();
+
     return {
       input,
       output,
@@ -69,6 +72,7 @@ export default {
       headline,
       imageUrl,
       altText,
+      bookmark,
     };
   },
 };

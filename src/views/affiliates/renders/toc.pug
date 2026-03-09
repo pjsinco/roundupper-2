@@ -1,5 +1,4 @@
-template(v-slot:render-container)
+template(v-if="haveToc" v-slot:render-container)
   div(style="max-width: 590px; margin: 0 auto; background-color: #fff;")
     div#rendered
-      a(:id="bookmark" :name="bookmark")
       div(align="left" bgcolor="#ffffff" v-html="output")

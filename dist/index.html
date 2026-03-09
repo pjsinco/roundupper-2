@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="/roundupper-2/favicon.ico">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.typekit.net/crt3xry.css">
+<!--     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600" rel="stylesheet"> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roundupper</title>
+    <style type="text/css">
+
+      body {
+        transition: opacity 3s ease;
+
+        opacity: 1;
+      }
+
+      body.loading {
+        opacity: 0
+      }
+    </style>
+
+    <script type="module" crossorigin src="/roundupper-2/assets/index-5IaAVlBv.js"></script>
+    <link rel="stylesheet" crossorigin href="/roundupper-2/assets/index-lxhxwZjA.css">
+  </head>
+  <body>
+    <div id="app" class="blank"></div>
+
+    <script type="text/javascript" charset="utf-8">
+      var bodyClass = document.body.classList;
+      bodyClass.add('loading');
+
+      window.addEventListener('DOMContentLoaded', function() {
+        bodyClass.remove('loading');
+      });
+    </script>
+
+  </body>
+</html>

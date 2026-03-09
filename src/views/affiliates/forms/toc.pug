@@ -1,0 +1,34 @@
+template(v-slot:form)
+  div.row
+    div.col-xs-12
+      h1(style="display: flex; justify-content: space-between; align-items: baseline;").component__title Table of contents
+        | #[span(style="margin-left: 8px; font-size: 20px; font-weight: 300;").small A little experimental #[span(style="position: relative; top: 2px;") {{ reaction }}]]
+
+  div(v-if="!haveToc").row
+    div.col-xs-12
+      div.form-group
+        label(for="urlToFetch") Browser version URL
+        input(id="urlToFetch" v-model="urlToFetch").form-control
+      div.form-group.clearfix
+        button(@click="handleSubmit").btn.btn-sm.btn-default.pull-right Generate TOC
+
+  div(v-if="error != ''").row
+    div.col-xs-12
+      p(class="text-danger bg-danger" style="padding: 10px;") {{ error }}
+
+  div(v-show="haveToc").row
+    div.col-xs-12
+      div.form-group
+        label(for="input") Table of contents (in Markdown)
+        textarea(id="input" v-model="input").form-control
+
+  div(v-if="haveToc").row
+    div.col-xs-12
+      div.form-group.clearfix(style="margin-top: 40px;")
+        button.btn.btn-default#refresh(@click="reset")
+          span.glyphicon.glyphicon-refresh
+          | &nbsp;Reset
+        div.btn-group.pull-right
+          button.btn.btn-primary#copyHtml(@click="copy" aria-label="Copied HTML!")
+            span.glyphicon.glyphicon-copy
+            | &nbsp;Copy HTML

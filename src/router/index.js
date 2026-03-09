@@ -82,6 +82,14 @@ const router = createRouter({
             nickname: 'Section head',
           },
         },
+        {
+          path: 'toc',
+          name: 'Affiliates TOC',
+          component: () => import('../components/affiliates/Toc.vue'),
+          meta: {
+            nickname: 'TOC',
+          },
+        },
       ],
     },
     {
@@ -137,6 +145,14 @@ const router = createRouter({
             import('../components/aoa-general/TwoUpSignature.vue'),
           meta: {
             nickname: 'Two-up signature',
+          },
+        },
+        {
+          path: 'icon-list-sm',
+          name: 'Icon List - Small',
+          component: () => import('../components/aoa-general/IconListSm.vue'),
+          meta: {
+            nickname: 'Icon List Small',
           },
         },
         //{
