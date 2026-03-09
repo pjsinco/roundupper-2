@@ -1,0 +1,30 @@
+template(v-slot:render-container)
+  div(style="max-width: 600px; margin: 0 auto; padding: 24px 0; background-color: #fff; border: 1px dotted #d0d0d0;")
+    div#rendered
+      table(align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#ffffff;background-color:#ffffff;width:100%;" data-id="block")
+        tbody
+          template(v-for="item in items" )
+            tr(v-if="item.enabled")
+              td(style="direction:ltr;font-size:0px;padding:0 36px 20px 36px;text-align:center;")
+                <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="" style="vertical-align:top;width:79px;" ><![endif]-->
+                div(class="mj-column-per-15 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;")
+                  table(border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%")
+                    tbody
+                      tr
+                        td(align="center" style="font-size:0px;padding:0 25px 10px 0;word-break:break-word;")
+                          table(border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:collapse;border-spacing:0px;")
+                            tbody
+                              tr
+                                td(style="width:42px;")
+                                  a(v-if="item.iconLink != ''" :href="item.iconLink" style="text-decoration: none;")
+                                    img(:src="item.imageUrl" style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;" width="42" height="auto")
+                                  img(v-else :src="item.imageUrl" style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;" width="42" height="auto")
+
+                <!--[if mso | IE]></td><td class="" style="vertical-align:top;width:449px;" ><![endif]-->
+                div(class="mj-column-per-85 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;")
+                  table(border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%")
+                    tbody
+                      tr
+                        td(align="left" style="font-size:0px;padding:0;word-break:break-word;")
+                          div(style="font-family:Arial, Helvetica, sans-serif;font-size:16px;font-weight:normal;line-height:24px;text-align:left;color:#2a2a2a;" v-html="item.output")
+                <!--[if mso | IE]></td></tr></table><![endif]-->

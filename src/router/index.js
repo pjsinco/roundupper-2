@@ -48,6 +48,14 @@ const router = createRouter({
             nickname: 'Experiment highlight',
           },
         },
+        {
+          path: 'icon-list-sm',
+          name: 'Experiment Icon List - Small',
+          component: () => import('../components/experiment/IconListSm.vue'),
+          meta: {
+            nickname: 'Experiment Icon List Small',
+          },
+        },
       ],
     },
     {
