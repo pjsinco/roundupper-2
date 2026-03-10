@@ -5,9 +5,9 @@ template(v-slot:render-container)
         tbody
           template(v-for="item in items" )
             tr(v-if="item.enabled")
-              td(style="direction:ltr;font-size:0px;padding:0 36px 20px 36px;text-align:center;")
-                <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="" style="vertical-align:top;width:79px;" ><![endif]-->
-                div(class="mj-column-per-15 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;")
+              td(style="direction:ltr;font-size:0px;padding:0 36px 20px 36px;text-align:center;" :foo="sizes[selectedSize]")
+                <!--[if mso | IE]><table role="presentation" :foo="sizes[selectedSize]" border="0" cellpadding="0" cellspacing="0"><tr><td class="" style="vertical-align:top;" :style="`width:${sizes[selectedSize].divWidths[0]}`;" ><![endif]-->
+                div(:class="`mj-column-per-${sizes[selectedSize].proportions[0]}`" class="mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;")
                   table(border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%")
                     tbody
                       tr
@@ -15,13 +15,13 @@ template(v-slot:render-container)
                           table(border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:collapse;border-spacing:0px;")
                             tbody
                               tr
-                                td(style="width:42px;")
+                                td(style="`width: ${sizes[selectedSize].tdWidth}`")
                                   a(v-if="item.iconLink != ''" :href="item.iconLink" style="text-decoration: none;")
-                                    img(:src="item.imageUrl" style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;" width="42" height="auto")
-                                  img(v-else :src="item.imageUrl" style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;" width="42" height="auto")
+                                    img(v-bind:src="sizes[selectedSize].file" style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;" :width="sizes[selectedSize].tdWidth" height="auto")
+                                  img(v-else v-bind:src="sizes[selectedSize].file" style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;" :width="sizes[selectedSize].tdWidth" height="auto")
 
-                <!--[if mso | IE]></td><td class="" style="vertical-align:top;width:449px;" ><![endif]-->
-                div(class="mj-column-per-85 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;")
+                <!--[if mso | IE]></td><td class="" v-bind:style="`vertical-align:top;width:${sizes[selectedSize].divWidths[1]};`" ><![endif]-->
+                div(:class="`mj-column-per-${sizes[selectedSize].proportions[1]}`" class="mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;")
                   table(border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%")
                     tbody
                       tr

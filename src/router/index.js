@@ -147,14 +147,14 @@ const router = createRouter({
             nickname: 'Two-up signature',
           },
         },
-        {
-          path: 'icon-list-sm',
-          name: 'Icon List - Small',
-          component: () => import('../components/aoa-general/IconListSm.vue'),
-          meta: {
-            nickname: 'Icon List Small',
-          },
-        },
+        // {
+        //   path: 'icon-list-sm',
+        //   name: 'Icon List - Small',
+        //   component: () => import('../components/aoa-general/IconListSm.vue'),
+        //   meta: {
+        //     nickname: 'Icon List Small',
+        //   },
+        // },
         //{
         //path: 'spacer',
         //name: 'Spacer',

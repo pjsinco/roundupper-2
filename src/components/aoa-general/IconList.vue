@@ -21,6 +21,34 @@ export default {
     const defaultImageUrl = Constants.DEFAULT_HEADER_URL;
     const defaultInput = Constants.DEFAULT_TEXT_MARKDOWN;
 
+    const sizeOptions = ref([
+      { text: 'Small (42px)', value: 'sm' },
+      { text: 'Medium (100px)', value: 'md' },
+      { text: 'Large (200px)', value: 'lg' },
+    ]);
+    const selectedSize = ref('sm');
+
+    const sizes = {
+      sm: {
+        proportions: ['15', '85'],
+        divWidths: ['79', '449'],
+        tdWidth: '42',
+        file: 'https://resources.osteopathic.org/l/979203/2026-03-10/pcnbl/979203/1773153682NAmNBE80/placeholder_circle_42.png',
+      },
+      md: {
+        proportions: ['25', '75'],
+        divWidths: ['132', '396'],
+        tdWidth: '100',
+        file: 'https://resources.osteopathic.org/l/979203/2026-03-10/pcnbp/979203/1773153743btAsSs8Y/placeholder_circle_100.png',
+      },
+      lg: {
+        proportions: ['35', '65'],
+        divWidths: ['185', '343'],
+        tdWidth: '135',
+        file: 'https://resources.osteopathic.org/l/979203/2026-03-10/pcnbs/979203/1773153777DE1fe7lZ/placeholder_circle_200.png',
+      },
+    };
+
     const { renderer } = useRendererForAoaGeneral();
 
     let currId = 0;
@@ -124,6 +152,9 @@ export default {
       handleDelete,
       handleAdd,
       numEnabled,
+      sizeOptions,
+      selectedSize,
+      sizes,
     };
   },
 };
@@ -131,8 +162,8 @@ export default {
 
 <template lang="pug">
   Workspace
-    include ../../views/aoa-general/forms/icon-list
-    include ../../views/aoa-general/renders/icon-list
+    include ../../views/generic/forms/icon-list
+    include ../../views/generic/renders/icon-list
 </template>
 
 <style lang="scss">
@@ -153,9 +184,29 @@ export default {
     max-width: 25%;
   }
 
+  .mj-column-per-35 {
+    width: 35% !important;
+    max-width: 35%;
+  }
+
+  .mj-column-per-65 {
+    width: 65% !important;
+    max-width: 65%;
+  }
+
   .mj-column-per-75 {
     width: 75% !important;
     max-width: 75%;
+  }
+
+  .mj-column-per-15 {
+    width: 15% !important;
+    max-width: 15%;
+  }
+
+  .mj-column-per-85 {
+    width: 85% !important;
+    max-width: 85%;
   }
 }
 </style>

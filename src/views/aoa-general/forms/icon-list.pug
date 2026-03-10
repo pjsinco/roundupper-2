@@ -1,5 +1,14 @@
 template(v-slot:form)
-  h1.component__title Icon list
+  div.row
+    div.col-xs-12
+      h1.component__title Icon List
+
+  div.row
+    div.col-xs-6
+      div.form-group
+        label(for="align") Icon List Size
+        select(id="align" v-model="selectedSize").form-control
+          option(v-for="option in sizeOptions" :value="option.value") {{ option.text }}
 
   template(v-for="(item, i) in items")
     div(v-if="item.enabled").item-group
