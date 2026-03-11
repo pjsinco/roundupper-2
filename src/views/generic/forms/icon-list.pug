@@ -4,7 +4,7 @@ template(v-slot:form)
       h1.component__title Icon List
 
   div.row
-    div.col-xs-6
+    div.col-xs-12
       div.form-group
         label(for="align") Icon List Size
         select(id="align" v-model="selectedSize").form-control
@@ -15,7 +15,7 @@ template(v-slot:form)
       h4 Icon list item #[span(v-if="numEnabled > 1" @click="handleDelete(item)").delete.pull-right &#x2715;]
       div.form-group
         label(:for="'imageUrl-' + item.id") Icon image URL
-        input(type="text" :id="'imageUrl-' + item.id" @input="handleImageUrlChange(i, $event.target.value)" :value="item.imageUrl").form-control
+        input(type="text" :id="'imageUrl-' + item.id" v-model="item.imageUrl").form-control
         //- p.help-block Icon size: 100px x 100px
       div.form-group
         label(:for="'iconLink-' + item.id") Icon link (optional)

@@ -1,5 +1,5 @@
 <script>
-import { nextTick, ref, computed, onMounted } from 'vue';
+import { nextTick, ref, computed, watch, onMounted } from 'vue';
 import Workspace from '@/components/Workspace.vue';
 import { copyHtml, copyText } from '@/composables/useButtonFunctions';
 import { find } from 'lodash-es';
@@ -9,6 +9,8 @@ import 'codemirror/lib/codemirror.css';
 import 'codemirror/mode/markdown/markdown';
 import { marked } from 'marked';
 import Constants from '@/constants/aoa-general';
+import { renderToString } from 'vue/server-renderer';
+import { replaceMsoPlaceholders } from '@/utils';
 
 export default {
   components: {
@@ -18,8 +20,52 @@ export default {
   props: ['currentTemplate'],
 
   setup(props) {
-    const defaultImageUrl = Constants.DEFAULT_HEADER_URL;
+    const sizeOptions = ref([
+      { text: 'Small (42px-wide icon)', value: 'sm' },
+      { text: 'Medium (100px-wide icon)', value: 'md' },
+      { text: 'Large (158px-wide icon)', value: 'lg' },
+    ]);
+    const selectedSize = ref('sm');
+
     const defaultInput = Constants.DEFAULT_TEXT_MARKDOWN;
+    let defaultImageUrl =
+      Constants[`DEFAULT_ICON_${selectedSize.value.toUpperCase()}`];
+
+    watch(selectedSize, (newSelectedSize) => {
+      defaultImageUrl =
+        Constants[`DEFAULT_ICON_${newSelectedSize.toUpperCase()}`];
+
+      for (const item of items.value) {
+        // TODO not sure if item.touched is ever true
+        if (!item.touched) {
+          item.imageUrl =
+            Constants[`DEFAULT_ICON_${selectedSize.value.toUpperCase()}`];
+        }
+      }
+    });
+
+    function handleImageUrlChange(index, val) {
+      items.value[index].imageUrl = val;
+      items.value[index].touched = true;
+    }
+
+    const sizes = {
+      sm: {
+        proportions: ['15', '85'],
+        divWidths: ['79', '449'],
+        tdWidth: '42',
+      },
+      md: {
+        proportions: ['25', '75'],
+        divWidths: ['132', '396'],
+        tdWidth: '100',
+      },
+      lg: {
+        proportions: ['35', '65'],
+        divWidths: ['185', '343'],
+        tdWidth: '153',
+      },
+    };
 
     const { renderer } = useRendererForAoaGeneral();
 
@@ -33,11 +79,13 @@ export default {
 
     function getNewItem() {
       const id = getId();
+
       return {
         imageUrl: defaultImageUrl,
         iconLink: '',
         input: defaultInput,
         enabled: true,
+        touched: false,
         id,
         get output() {
           return marked(this.input);
@@ -67,7 +115,12 @@ export default {
     };
 
     function copy() {
-      copyHtml();
+      const replacements = [
+        `<!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="" valign="top" style="vertical-align:top;" style="width:${sizes[selectedSize.value].divWidths[0]}px;" ><![endif]-->`,
+        `<!--[if mso | IE]></td><td class="" valign="top" style="vertical-align:top;width:${sizes[selectedSize.value].divWidths[1]}px;" ><![endif]-->`,
+        `<!--[if mso | IE]></td></tr></table><![endif]-->`,
+      ];
+      copyHtml(replaceMsoPlaceholders(replacements, items.value.length));
     }
 
     function copyTextVersion() {
@@ -124,6 +177,10 @@ export default {
       handleDelete,
       handleAdd,
       numEnabled,
+      sizeOptions,
+      handleImageUrlChange,
+      selectedSize,
+      sizes,
     };
   },
 };
@@ -131,8 +188,8 @@ export default {
 
 <template lang="pug">
   Workspace
-    include ../../views/aoa-general/forms/icon-list
-    include ../../views/aoa-general/renders/icon-list
+    include ../../views/generic/forms/icon-list
+    include ../../views/generic/renders/icon-list
 </template>
 
 <style lang="scss">
@@ -153,9 +210,29 @@ export default {
     max-width: 25%;
   }
 
+  .mj-column-per-35 {
+    width: 35% !important;
+    max-width: 35%;
+  }
+
+  .mj-column-per-65 {
+    width: 65% !important;
+    max-width: 65%;
+  }
+
   .mj-column-per-75 {
     width: 75% !important;
     max-width: 75%;
+  }
+
+  .mj-column-per-15 {
+    width: 15% !important;
+    max-width: 15%;
+  }
+
+  .mj-column-per-85 {
+    width: 85% !important;
+    max-width: 85%;
   }
 }
 </style>
