@@ -1,5 +1,5 @@
 <script>
-import { ref, onMounted, nextTick, computed, watch } from 'vue';
+import { ref, onMounted, nextTick, computed } from 'vue';
 import Workspace from '@/components/Workspace.vue';
 import LoadingSpinner from '@/components/LoadingSpinner.vue';
 import { useRendererForNewsletter } from '@/composables/renderer-newsletter';
