@@ -1,1 +1,0 @@
-import{c as a}from"./markdown--qxOycaS.js";function i(r,o,t="80px"){const e=a.fromTextArea(o,{mode:"markdown",lineWrapping:!0});return e.setSize("100%",t),e.on("change",()=>{r.value=e.getValue()}),e}export{i as e};

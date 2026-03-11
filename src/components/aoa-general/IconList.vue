@@ -1,5 +1,5 @@
 <script>
-import { nextTick, ref, computed, onMounted } from 'vue';
+import { nextTick, ref, computed, watch, onMounted } from 'vue';
 import Workspace from '@/components/Workspace.vue';
 import { copyHtml, copyText } from '@/composables/useButtonFunctions';
 import { find } from 'lodash-es';
@@ -9,6 +9,8 @@ import 'codemirror/lib/codemirror.css';
 import 'codemirror/mode/markdown/markdown';
 import { marked } from 'marked';
 import Constants from '@/constants/aoa-general';
+import { renderToString } from 'vue/server-renderer';
+import { replaceMsoPlaceholders } from '@/utils';
 
 export default {
   components: {
@@ -18,34 +20,50 @@ export default {
   props: ['currentTemplate'],
 
   setup(props) {
-    const defaultImageUrl = Constants.DEFAULT_HEADER_URL;
-    const defaultInput = Constants.DEFAULT_TEXT_MARKDOWN;
-
     const sizeOptions = ref([
-      { text: 'Small (42px)', value: 'sm' },
-      { text: 'Medium (100px)', value: 'md' },
-      { text: 'Large (200px)', value: 'lg' },
+      { text: 'Small (42px-wide icon)', value: 'sm' },
+      { text: 'Medium (100px-wide icon)', value: 'md' },
+      { text: 'Large (158px-wide icon)', value: 'lg' },
     ]);
     const selectedSize = ref('sm');
+
+    const defaultInput = Constants.DEFAULT_TEXT_MARKDOWN;
+    let defaultImageUrl =
+      Constants[`DEFAULT_ICON_${selectedSize.value.toUpperCase()}`];
+
+    watch(selectedSize, (newSelectedSize) => {
+      defaultImageUrl =
+        Constants[`DEFAULT_ICON_${newSelectedSize.toUpperCase()}`];
+
+      for (const item of items.value) {
+        // TODO not sure if item.touched is ever true
+        if (!item.touched) {
+          item.imageUrl =
+            Constants[`DEFAULT_ICON_${selectedSize.value.toUpperCase()}`];
+        }
+      }
+    });
+
+    function handleImageUrlChange(index, val) {
+      items.value[index].imageUrl = val;
+      items.value[index].touched = true;
+    }
 
     const sizes = {
       sm: {
         proportions: ['15', '85'],
         divWidths: ['79', '449'],
         tdWidth: '42',
-        file: 'https://resources.osteopathic.org/l/979203/2026-03-10/pcnbl/979203/1773153682NAmNBE80/placeholder_circle_42.png',
       },
       md: {
         proportions: ['25', '75'],
         divWidths: ['132', '396'],
         tdWidth: '100',
-        file: 'https://resources.osteopathic.org/l/979203/2026-03-10/pcnbp/979203/1773153743btAsSs8Y/placeholder_circle_100.png',
       },
       lg: {
         proportions: ['35', '65'],
         divWidths: ['185', '343'],
-        tdWidth: '135',
-        file: 'https://resources.osteopathic.org/l/979203/2026-03-10/pcnbs/979203/1773153777DE1fe7lZ/placeholder_circle_200.png',
+        tdWidth: '153',
       },
     };
 
@@ -61,11 +79,13 @@ export default {
 
     function getNewItem() {
       const id = getId();
+
       return {
         imageUrl: defaultImageUrl,
         iconLink: '',
         input: defaultInput,
         enabled: true,
+        touched: false,
         id,
         get output() {
           return marked(this.input);
@@ -95,7 +115,12 @@ export default {
     };
 
     function copy() {
-      copyHtml();
+      const replacements = [
+        `<!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="" valign="top" style="vertical-align:top;" style="width:${sizes[selectedSize.value].divWidths[0]}px;" ><![endif]-->`,
+        `<!--[if mso | IE]></td><td class="" valign="top" style="vertical-align:top;width:${sizes[selectedSize.value].divWidths[1]}px;" ><![endif]-->`,
+        `<!--[if mso | IE]></td></tr></table><![endif]-->`,
+      ];
+      copyHtml(replaceMsoPlaceholders(replacements, items.value.length));
     }
 
     function copyTextVersion() {
@@ -153,6 +178,7 @@ export default {
       handleAdd,
       numEnabled,
       sizeOptions,
+      handleImageUrlChange,
       selectedSize,
       sizes,
     };

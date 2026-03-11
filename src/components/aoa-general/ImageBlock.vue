@@ -3,6 +3,7 @@ import { ref, computed, watch } from 'vue';
 import Workspace from '@/components/Workspace.vue';
 import { copyHtml, copyText } from '@/composables/useButtonFunctions';
 import { debounce } from 'lodash-es';
+import { replaceMsoPlaceholders } from '@/utils';
 
 export default {
   components: {
@@ -41,27 +42,12 @@ export default {
     };
 
     function copy() {
-      function replaceMsoPlaceholders(html) {
-        const replacements = [
-          `<!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="" style="vertical-align:top;width:528px;" ><![endif]-->`,
-          `<!--[if mso | IE]></td></tr></table><![endif]-->`,
-        ];
+      const replacements = [
+        `<!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td style="vertical-align:top;width:528px;" ><![endif]-->`,
+        `<!--[if mso | IE]></td></tr></table><![endif]-->`,
+      ];
 
-        const regex = /<span.?id="mso_\d"><\/span>/gm;
-        const targets = [...html.matchAll(regex)];
-
-        console.log(
-          `Found ${targets.length} targets for ${replacements.length} replacements`
-        );
-
-        for (let i = 0, len = replacements.length; i < len; i++) {
-          html = html.replace(targets[i], replacements[i]);
-        }
-
-        return html;
-      }
-
-      copyHtml(replaceMsoPlaceholders);
+      copyHtml(replaceMsoPlaceholders(replacements));
     }
 
     function copyTextVersion() {
