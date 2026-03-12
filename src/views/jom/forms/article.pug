@@ -1,0 +1,42 @@
+template(v-slot:form)
+  div.row
+    div.col-xs-12
+      h1.component__title Article
+
+
+  div.row
+    div.col-xs-6
+      div.form-group
+        label(for="select") Category
+        select(id="select" v-model="selectedCat").form-control
+          option(v-for="cat in categories" :selected="selectedCat.short == cat.short" :value="cat.short" :key="cat.short") {{ cat.name }}
+    div.col-xs-6
+      div.form-group
+        label(for="type") Type
+        input(type="text" id="type" v-model="type").form-control
+
+    div.col-xs-12
+      div.form-group
+        label(for="title") Title
+        input(type="text" id="title" v-model="title").form-control
+
+    div.col-xs-12
+      div.form-group
+        label(for="authors") Authors
+        input(type="text" id="authors" v-model="authors").form-control
+
+    div.col-xs-12
+      div.form-group
+        label(for="description") Description
+        textarea(rows="3" id="description" v-model="description").form-control
+
+    div.col-xs-12
+      div.form-group
+        label(for="link") Link
+        input(type="text" id="link" v-model="link").form-control
+
+
+
+
+
+  include ../../includes/copy-button
