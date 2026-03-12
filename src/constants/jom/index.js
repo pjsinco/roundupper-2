@@ -2,83 +2,83 @@ export default {
   CATEGORIES: [
     {
       name: 'Advocacy',
-      short: 'advocacy',
-    },
-    {
-      name: 'Osteopathic Journal Club',
-      short: 'osteopathic-journal-club',
-    },
-    {
-      name: 'Book Review',
-      short: 'book-review',
-    },
-    {
-      name: 'Public Health and Primary Care',
-      short: 'public-health-and-primary-care',
-    },
-    {
-      name: 'NMM/OMT',
-      short: 'nmm-omt',
-    },
-    {
-      name: 'Musculoskeletal Medicine and Pain',
-      short: 'musculoskeletal-medicine-and-pain',
-    },
-    {
-      name: 'Behavioral Health',
-      short: 'behavioral-health',
-    },
-    {
-      name: 'Cardiopulmonary Medicine',
-      short: 'cardiopulmonary-medicine',
-    },
-    {
-      name: 'Obstetrics/Gynecology',
-      short: 'obstetrics-gynecology',
-    },
-    {
-      name: 'Pediatrics',
-      short: 'pediatrics',
-    },
-    {
-      name: 'Medical Education',
-      short: 'medical-education',
-    },
-    {
-      name: 'General',
-      short: 'general',
-    },
-    {
-      name: 'Innovations',
-      short: 'innovations',
-    },
-    {
-      name: 'Health Policy',
-      short: 'health-policy',
-    },
-    {
-      name: 'Clinical Image',
-      short: 'clinical-image',
-    },
-    {
-      name: 'Editorial',
-      short: 'editorial',
-    },
-    {
-      name: 'Letters to the Editor',
-      short: 'letters-to-the-editor',
-    },
-    {
-      name: 'AOA Research Abstracts and Posters',
-      short: 'aoa-research-abstracts-and-posters',
+      value: 'advocacy',
     },
     {
       name: 'AOA Communication',
-      short: 'aoa-communication',
+      value: 'aoa-communication',
+    },
+    {
+      name: 'AOA Research Abstracts and Posters',
+      value: 'aoa-research-abstracts-and-posters',
+    },
+    {
+      name: 'Behavioral Health',
+      value: 'behavioral-health',
+    },
+    {
+      name: 'Book Review',
+      value: 'book-review',
+    },
+    {
+      name: 'Cardiopulmonary Medicine',
+      value: 'cardiopulmonary-medicine',
+    },
+    {
+      name: 'Clinical Image',
+      value: 'clinical-image',
+    },
+    {
+      name: 'Editorial',
+      value: 'editorial',
+    },
+    {
+      name: 'General',
+      value: 'general',
+    },
+    {
+      name: 'Health Policy',
+      value: 'health-policy',
+    },
+    {
+      name: 'Innovations',
+      value: 'innovations',
+    },
+    {
+      name: 'Letters to the Editor',
+      value: 'letters-to-the-editor',
+    },
+    {
+      name: 'Medical Education',
+      value: 'medical-education',
+    },
+    {
+      name: 'Musculoskeletal Medicine and Pain',
+      value: 'musculoskeletal-medicine-and-pain',
+    },
+    {
+      name: 'NMM/OMT',
+      value: 'nmm-omt',
+    },
+    {
+      name: 'Obstetrics/Gynecology',
+      value: 'obstetrics-gynecology',
+    },
+    {
+      name: 'Osteopathic Journal Club',
+      value: 'osteopathic-journal-club',
+    },
+    {
+      name: 'Pediatrics',
+      value: 'pediatrics',
+    },
+    {
+      name: 'Public Health and Primary Care',
+      value: 'public-health-and-primary-care',
     },
     {
       name: 'Uncategorized',
-      short: 'uncategorized',
+      value: 'uncategorized',
     },
   ],
 };

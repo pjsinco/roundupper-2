@@ -3,13 +3,12 @@ template(v-slot:form)
     div.col-xs-12
       h1.component__title Article
 
-
   div.row
     div.col-xs-6
       div.form-group
         label(for="select") Category
         select(id="select" v-model="selectedCat").form-control
-          option(v-for="cat in categories" :selected="selectedCat.short == cat.short" :value="cat.short" :key="cat.short") {{ cat.name }}
+          option(v-for="option in categoryOptions" :selected="selectedCat == option.value" :value="option.value" :key="option.value") {{ option.name }}
     div.col-xs-6
       div.form-group
         label(for="type") Type
@@ -35,7 +34,29 @@ template(v-slot:form)
         label(for="link") Link
         input(type="text" id="link" v-model="link").form-control
 
+    div.col-xs-12
+      div.form-group
+        button(class="btn btn-default pull-right" id="showImageForm" v-on:click="showImageForm = !showImageForm" v-text="showImageForm ? 'Remove Image' : 'Add Image'")
 
+  transition(name="fade")
+    div.row(class="image-group" id="imageGroup" v-if="showImageForm")
+      div.col-xs-12
+        div.form-group
+          label(for="imageUrl") Image URL
+          input(type="text" id="imageUrl" v-model="imageUrl").form-control
+          p.help-block Image size: 480px x 240px
+      div.col-xs-12
+        div.form-group
+          label(for="caption") Caption
+          input(type="text" id="caption" v-model="caption").form-control
+      div.col-xs-12
+        div.form-group
+          label(for="imageLink") Image link
+          input(type="text" id="imageLink" v-model="imageLink").form-control
+      div.col-xs-12
+        div.form-group
+          label(for="imageAltText") Image alt text
+          input(type="text" id="imageAltText" v-model="imageAltText").form-control
 
 
 
