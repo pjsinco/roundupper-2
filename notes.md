@@ -36,3 +36,11 @@ $ curl --request POST -H "Content-Type: application/json" -d '{"id": "3715"}' ht
 
 $ curl --request POST -H "Content-Type: application/json" -d '{"url": "https://resources.osteopathic.org/webmail/979203/1053407438/6d722e13591a33e5a648f0e82ac5c4e1edb5ca8fdc85d6e87325bad533ff061b"}' https://andthatproveswhat.com/roundupper-api/toc
 ```
+
+### Thu Mar 12 08:47:03 2026 CDT
+Quick tmux reference:
+
+* Ctrl-b ←/→ — switch panes
+* Ctrl-b z — zoom current pane to full screen (hit again to unzoom)
+* Ctrl-b [ — scroll mode (navigate with vim keys, q to exit)
+* Ctrl-b d — detach (session stays alive, reattach with tmux attach -t dev)
