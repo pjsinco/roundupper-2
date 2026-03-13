@@ -1,14 +1,14 @@
 template(v-slot:render-container)
-  div(style="max-width: 600px; margin: 0 auto; padding: 24px 0; background-color: #fff; border: 1px dotted #d0d0d0;")
-    div#rendered
-      tr
-        td(style="direction:ltr;font-size:0px;padding:0;text-align:center;" )
-          span#mso_0
-          div(class="mj-column-per-100 mj-outlook-group-fix i-body-column" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;")
-            table(border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%")
-              tbody
-                tr
-                  td(class="fluid-padding" style="background-color:#ffffff;vertical-align:top;padding:0px 52px;")
+  div(style="width: 600px; margin: 0 auto; padding: 24px 0; background-color: #fff; border: 1px dotted #d0d0d0;")
+    tr
+      td(style="direction:ltr;font-size:0px;padding:0;text-align:center;" )
+        span#mso_0(style="display: block; width: 600px;")
+        div(class="mj-column-per-100 mj-outlook-group-fix i-body-column" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;")
+          table(border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%")
+            tbody
+              tr
+                td(class="fluid-padding" style="background-color:#ffffff;vertical-align:top;padding:0px 52px;")
+                  div#rendered
                     table(pardot-repeatable="article" pardot-removable="article" pardot-region="article-content" pardot-region-type="html" border="0" cellpadding="0" cellspacing="0" role="presentation" style="" width="100%")
                       tbody
 
@@ -21,7 +21,7 @@ template(v-slot:render-container)
                                 span(style="color: #222; font-family: Helvetica, Arial, sans-serif; text-transform: uppercase; letter-spacing: 1px; font-weight: normal; font-style: normal; font-size: 12px; line-height: 19px; vertical-align: middle;") {{ type }}
 
                         // TITLE
-                        tr
+                        tr(v-if="title !== ''")
                           td(align="left" class="fluid-image" style="font-size:0px;padding:0 0 8px 0;word-break:break-word;")
                             div(style="font-family:Georgia, serif;font-size:24px;line-height:32px;text-align:left;color:#222222;")
                               a(:href="link" style="text-decoration: none; color: #222; font-family: Georgia, serif; font-size: 24px; line-height: 32px;") {{ title }}
@@ -37,7 +37,7 @@ template(v-slot:render-container)
                         // DESCRIPTION
                         tr(v-if="description !== ''")
                           td(align="left" class="fluid-image" style="font-size:0px;padding:0;padding-bottom:16px;word-break:break-word;")
-                            div(style="font-family:Georgia, serif;font-size:16px;line-height:24px;text-align:left;color:#222222;") {{ description }}
+                            div(style="font-family:Georgia, serif;font-size:16px;line-height:24px;text-align:left;color:#222222;" v-html="description")
 
 
                         // IMAGE - TODO
@@ -53,7 +53,20 @@ template(v-slot:render-container)
                           td(align="left" style="font-size:0px;padding:0 0 16px 0;word-break:break-word;" class="fluid-image")
                             div(style="font-family:Helvetica, Arial, sans-serif;font-size:14px;line-height:20px;text-align:left;color:#888888;") {{ caption }}
 
+                        // BUTTON
+                        tr
+                          td(align="center" class="fluid-image" style="font-size:0px;padding:0 0 8px 0;word-break:break-word;width:100%")
+                            table(border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:separate;width:100%;line-height:100%;")
+                              tbody
+                                tr
+                                  td(align="center" bgcolor="#2C3A81" class="fluid-image" role="presentation" style="border:none;border-radius:0;cursor:auto;mso-padding-alt:8px 12px;background:#2C3A81;" valign="middle")#msoPadding
+                                     a(:href="link" style="display:inline-block;background:#2C3A81;color:#ffffff;font-family:Helvetica, Arial, sans-serif;font-size:16px;font-weight:normal;line-height:120%;margin:0;text-decoration:none;text-transform:none;padding:8px 12px;mso-padding-alt:0px;border-radius:0;" target="_blank") Read article
 
-
-
-          span#mso_1
+                        // DIVIDER
+                        tr(v-if="dividerBelow")
+                          td(class="fluid-image" style="padding-top:24px;padding-bottom:24px;padding-left:0;padding-right:0;")
+                            table(align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%")
+                              tbody
+                                tr
+                                  td(class="fluid-image" height="3" style="background:#E9EEFA; line-height:3px; font-size:0; mso-line-height-rule:exactly;") &nbsp;
+        // span#mso_1
