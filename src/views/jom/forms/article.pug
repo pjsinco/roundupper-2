@@ -57,7 +57,7 @@ template(v-slot:form)
           div.col-xs-12
             div.form-group
               label(for="imageUrl") Image URL
-              input(type="text" id="imageUrl" v-model="imageUrl").form-control
+              input(type="text" id="imageUrl" ref="srcInput" v-model="imageUrl").form-control
               p.help-block Image size: 480px x 240px
           div.col-xs-12
             div.form-group
@@ -80,6 +80,28 @@ template(v-slot:form)
               | Divider
             template(v-slot:tail)
               Switch(v-model="dividerBelow")
+          Option(:should-show="includeBlock")
+            template(v-slot:head)
+              | Block
+            template(v-slot:tail)
+              div
+                ButtonLink(@click="includeBlock = true")
+                  template(v-slot:text)
+                    | Add
+            template(v-slot:show)
+              div.row
+                div.col-xs-12
+                  div(style="margin-top: -1px; margin-bottom: -1px").item-group
+                    h4(style="margin-top: 13px;") Block #[CloseButton(@click="includeBlock = false")]
+                    div.form-group
+                      label(for="blockType") Block Type
+                      select(id="blockType" v-model="selectedBlockType").form-control
+                        option(v-for="option in blockTypeOptions" :selected="selectedBlockType == option.value" :value="option.value" :key="option.value") {{ option.name }}
+                    BlockGeneral(v-if="selectedBlockType === 'general'" :title="blockGeneralTitle" :text="blockGeneralText" @update:title="blockGeneralTitle = $event" @update:text="blockGeneralText = $event")
+
+
+
+
 
 
 

@@ -1,4 +1,18 @@
 export default {
+  BLOCK_TYPES: [
+    {
+      name: 'General',
+      value: 'general',
+    },
+    {
+      name: 'Three Numbers',
+      value: 'three-numbers',
+    },
+    {
+      name: 'List',
+      value: 'list',
+    },
+  ],
   CATEGORIES: [
     {
       name: 'Advocacy',

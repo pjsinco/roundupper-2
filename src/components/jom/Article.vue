@@ -6,61 +6,94 @@ import Tabs from '@/components/Tabs.vue';
 import Tab from '@/components/Tab.vue';
 import Switch from '@/components/Switch.vue';
 import Option from '@/components/Option.vue';
+import ButtonLink from '@/components/ButtonLink.vue';
+import CloseButton from '@/components/CloseButton.vue';
 import LoadingSpinner from '@/components/LoadingSpinner.vue';
+import BlockGeneral from '@/components/jom/BlockGeneral.vue';
 import { copyHtml, copyText } from '@/composables/useButtonFunctions';
 import { replaceMsoPlaceholders, replaceMsoPaddingAlt } from '@/utils';
 
 export default {
   components: {
-    Workspace,
-    Tabs,
-    Tab,
-    Switch,
-    Option,
+    BlockGeneral,
+    ButtonLink,
+    CloseButton,
     LoadingSpinner,
+    Option,
+    Switch,
+    Tab,
+    Tabs,
+    Workspace,
   },
 
   props: ['currentTemplate'],
 
   setup(props) {
+    const blockTypeOptions = Constants.BLOCK_TYPES;
     const categoryOptions = Constants.CATEGORIES;
     let defaults = {
-      selectedCat: categoryOptions.find((cat) => cat.name === 'General').value,
-      type: '',
       authors: '',
-      link: '',
-      title: '',
-      description: '',
-      imageUrl: '',
+      blockGeneralTitle: '',
+      blockGeneralText: '',
       caption: '',
-      imageLink: '',
-      imageAlt: '',
-      showImageForm: false,
+      description: '',
       dividerBelow: true,
       fetched: false,
       fetchError: '',
       idToFetch: '',
+      imageAlt: '',
+      imageLink: '',
+      imageUrl: '',
+      includeBlock: false,
+      includeImage: false,
       isLoading: false,
+      link: '',
+      selectedCat: categoryOptions.find((cat) => cat.name === 'General').value,
+      selectedBlockType: blockTypeOptions.find(
+        (option) => option.name === 'General'
+      ).value,
+      showImageForm: false,
+      title: '',
+      type: '',
     };
 
+    // -- Categories --
     const selectedCat = ref(defaults.selectedCat);
+
+    // -- Blocks --
+    const selectedBlockType = ref(defaults.selectedBlockType);
+    const includeBlock = ref(defaults.includeBlock);
+    const blockGeneralTitle = ref(defaults.blockGeneralTitle);
+    const blockGeneralText = ref(defaults.blockGeneralText);
+
+    // -- Article --
     const type = ref(defaults.type);
     const authors = ref(defaults.authors);
     const link = ref(defaults.link);
     const description = ref(defaults.description);
     const title = ref(defaults.title);
+
+    // -- Images --
     const imageUrl = ref(defaults.imageUrl);
     const caption = ref(defaults.caption);
     const imageLink = ref(defaults.link);
     const imageAlt = ref(defaults.imageAlt);
     const showImageForm = ref(defaults.showImageForm);
+
+    // -- DOM --
+    const input = useTemplateRef('idInput');
+    const imgSrcInput = useTemplateRef('srcInput');
+
+    // -- Extras --
     const dividerBelow = ref(defaults.dividerBelow);
+
+    // -- Fetching --
     const fetched = ref(defaults.fetched);
     const idToFetch = ref(defaults.idToFetch);
     const fetchError = ref(defaults.fetchError);
     const isLoading = ref(defaults.isLoading);
-    const input = useTemplateRef('idInput');
 
+    // -- Computed --
     const selectedCatName = computed(() => {
       const selectedOption = categoryOptions.find((option) => {
         return option.value === selectedCat.value;
@@ -72,16 +105,27 @@ export default {
       return caption.value !== '' ? '0 0 8px 0' : '0 0 0 0';
     });
 
+    // -- Watch --
     watch(link, (newValue) => {
       imageLink.value = newValue;
     });
 
+    watch(showImageForm, (newValue) => {
+      if (newValue === true) {
+        nextTick(() => {
+          imgSrcInput.value.focus();
+        });
+      }
+    });
+
+    // -- Life Cycle --
     onMounted(() => {
       nextTick(() => {
         input.value.focus();
       });
     });
 
+    // -- Handlers --
     function copy() {
       const replacements = [
         '<!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="i-body-column-outlook" style="vertical-align:top;width:600px;" ><![endif]-->',
@@ -95,6 +139,10 @@ export default {
 
     function copyTextVersion() {
       copyText();
+    }
+
+    function reset() {
+      window.location.reload();
     }
 
     async function handleSubmit() {
@@ -145,28 +193,34 @@ export default {
     }
 
     return {
-      categoryOptions,
-      selectedCatName,
-      selectedCat,
-      link,
-      title,
-      type,
-      description,
       authors,
-      imageUrl,
+      blockGeneralText,
+      blockGeneralTitle,
+      blockTypeOptions,
       caption,
-      imageLink,
-      imageAlt,
-      showImageForm,
-      imagePadding,
+      categoryOptions,
       copy,
       copyTextVersion,
+      description,
       dividerBelow,
-      idToFetch,
       fetched,
-      handleSubmit,
       fetchError,
+      handleSubmit,
+      idToFetch,
+      imageAlt,
+      imageLink,
+      imagePadding,
+      imageUrl,
+      includeBlock,
       isLoading,
+      link,
+      reset,
+      selectedBlockType,
+      selectedCat,
+      selectedCatName,
+      showImageForm,
+      title,
+      type,
     };
   },
 };

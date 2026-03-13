@@ -40,7 +40,6 @@ template(v-slot:render-container)
                             div(style="font-family:Georgia, serif;font-size:16px;line-height:24px;text-align:left;color:#222222;" v-html="description")
 
 
-                        // IMAGE - TODO
                         tr(v-if="imageUrl !== ''")
                           td(align="center" class="fluid-image" style="font-size: 0px; word-break: break-word;" :style="{ padding: imagePadding }")
                             table(border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:collapse;border-spacing:0px;")
@@ -52,6 +51,16 @@ template(v-slot:render-container)
                         tr(v-if="caption !== ''")
                           td(align="left" style="font-size:0px;padding:0 0 16px 0;word-break:break-word;" class="fluid-image")
                             div(style="font-family:Helvetica, Arial, sans-serif;font-size:14px;line-height:20px;text-align:left;color:#888888;") {{ caption }}
+
+
+                        // EXTRAS
+                        template(v-if="includeBlock && (selectedBlockType === 'general' || selectedBlockType === 'list')")
+                          include ./block-general
+                        // else if (article.extras.threenum.num1 !== "")
+                        //   +threeNum(article.extras.threenum)
+
+
+
 
                         // BUTTON
                         tr
