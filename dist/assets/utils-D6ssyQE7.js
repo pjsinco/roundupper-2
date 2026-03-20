@@ -1,1 +1,0 @@
-function c(o=[],l=1){return function(e){const s=/<span.?id="mso_\d"><\/span>/gm,r=[...e.matchAll(s)];console.log(`Found ${r.length} targets for ${o.length} replacements`);for(let t=0;t<l;t++)for(let n=0,a=o.length;n<a;n++)e=e.replace(r[n],o[n]);return e}}export{c as r};
