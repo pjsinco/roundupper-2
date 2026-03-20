@@ -123,11 +123,12 @@ const router = createRouter({
           },
         },
         {
-          path: 'icon-list',
-          name: 'Icon list',
-          component: () => import('../components/aoa-general/IconList.vue'),
+          path: 'list-with-image',
+          name: 'List with image',
+          component: () =>
+            import('../components/aoa-general/ListWithImage.vue'),
           meta: {
-            nickname: 'Icon list',
+            nickname: 'List with image',
           },
         },
         {
