@@ -1,4 +1,4 @@
-import{C as n}from"./index-bQRmu1Dj.js";function u(i={forToc:!1}){console.log("opts1",i);function o(t){return`
+import{C as n}from"./index-CAv9y8S_.js";function u(i={forToc:!1}){console.log("opts1",i);function o(t){return`
       <p style="${n.Styles.P_STYLE.join("; ")}">${t}</p>`}function r(t,e){switch(e){default:case 3:return`<h3 style="${n.Styles.H3_STYLE.join("; ")}">${t}</h3>
 `;case 4:return`<h4 style="${n.Styles.H4_STYLE.join("; ")}">${t}</h4>
 `}}function c(t,e,s){return`<img src="${t}" alt="${s}" class="img" />`}function a(t,e,s){const l=n.Styles.LINK_STYLE.join("; ");return`
