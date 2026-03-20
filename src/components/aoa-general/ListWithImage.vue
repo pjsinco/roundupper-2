@@ -21,9 +21,9 @@ export default {
 
   setup(props) {
     const sizeOptions = ref([
-      { text: 'Small (42px-wide icon)', value: 'sm' },
-      { text: 'Medium (100px-wide icon)', value: 'md' },
-      { text: 'Large (158px-wide icon)', value: 'lg' },
+      { text: 'Small (42px)', value: 'sm' },
+      { text: 'Medium (100px)', value: 'md' },
+      { text: 'Large (158px)', value: 'lg' },
     ]);
     const selectedSize = ref('sm');
 
@@ -188,8 +188,8 @@ export default {
 
 <template lang="pug">
   Workspace
-    include ../../views/generic/forms/icon-list
-    include ../../views/generic/renders/icon-list
+    include ../../views/generic/forms/list-with-image
+    include ../../views/generic/renders/list-with-image
 </template>
 
 <style lang="scss">

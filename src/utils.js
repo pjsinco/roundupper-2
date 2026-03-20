@@ -15,7 +15,7 @@ export function replaceMsoPlaceholders(replacements = [], loops = 1) {
     );
 
     // Handle cases when we have more than one component with mso-replacements.
-    // This is the case when components can have an arbitrary number, like IconList.
+    // This is the case when components can have an arbitrary number, like ListWithImage.
     for (let i = 0; i < loops; i++) {
       for (let j = 0, len = replacements.length; j < len; j++) {
         html = html.replace(targets[j], replacements[j]);
