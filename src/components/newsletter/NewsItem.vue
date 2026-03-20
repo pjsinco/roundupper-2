@@ -55,7 +55,7 @@ export default {
     const imageUrl = ref(defaultImageUrl);
     const caption = ref('');
     const includeImage = ref(false);
-    const includeButton = ref(true);
+    const includeButton = ref(false);
     const dividerAbove = ref(true);
     const bookmark = getBookmark();
     const tabRef = ref({});
