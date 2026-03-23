@@ -188,8 +188,8 @@ export default {
 
 <template lang="pug">
   Workspace
-    include ../../views/generic/forms/list-with-image
-    include ../../views/generic/renders/list-with-image
+    include ../../views/generic/forms/image-list
+    include ../../views/generic/renders/image-list
 </template>
 
 <style lang="scss">
