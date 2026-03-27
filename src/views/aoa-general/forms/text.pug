@@ -12,4 +12,15 @@ template(v-slot:form)
             input(type="checkbox" name="centerText" v-model="centerText" )
             | Center all text
 
+  div.row
+    div.col-xs
+      div.btn-group
+        button(@click="handleMakeLink").btn.btn-sm.btn-default
+          span.glyphicon.glyphicon-link
+        button(@click="handleMakeBold").btn.btn-sm.btn-default
+          span
+            | B
+        button(@click="handleMakeItalic").btn.btn-sm.btn-default
+          span #[em I]
+
   include ../../includes/copy-button
