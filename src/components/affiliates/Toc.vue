@@ -17,11 +17,12 @@ export default {
   setup() {
     const input = ref('');
     let editor = null;
-		const renderer = getRenderer({ forToc: true });
+    const renderer = getRenderer({ forToc: true });
 
     marked.use({ renderer });
     marked.setOptions({
       gfm: true,
+
       headerIds: false,
     });
 

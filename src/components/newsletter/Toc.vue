@@ -24,11 +24,14 @@ export default {
     const reactions = {
       testTube: '🧪',
       safetyGlasses: '🥽',
+
       happy: '🙂',
       nervous: '😬',
       sad: '🙁',
     };
     const reaction = ref(reactions.safetyGlasses);
+
+    console.log('hiya');
 
     const defaultTocInput = '### In this issue';
 
