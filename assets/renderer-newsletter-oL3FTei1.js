@@ -1,4 +1,4 @@
-import{S as o}from"./styles-CX3d9h40.js";import{u as i}from"./styles-base-aoa-general-D_tARdDJ.js";const c={liveAreaWidth:528},t={DEFAULT_TEXT_MD:`Fusce dapibus, **tellus ac cursus commodo,** tortor mauris condimentum nibh, ut fermentum *massa* justo [Osteopathic.org](https://osteopathic.org). Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Maecenas faucibus mollis interdum.
+import{S as o}from"./styles-CJZt6RbG.js";import{u as i}from"./styles-base-aoa-general-U9stuoRC.js";const c={liveAreaWidth:528},t={DEFAULT_TEXT_MD:`Fusce dapibus, **tellus ac cursus commodo,** tortor mauris condimentum nibh, ut fermentum *massa* justo [Osteopathic.org](https://osteopathic.org). Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Maecenas faucibus mollis interdum.
 `,Styles:o,Layout:c};function m(){const{paragraph:n,list:a}=i();return{renderer:{paragraph:n,list:a,link(e,s,r){const l=t.Styles.LINK_STYLE;return`
         <a href="${e}" 
            style="${l.join("; ")}"
