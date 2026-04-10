@@ -1,6 +1,6 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
 import Home from '../pages/Home.vue';
-import TheDO from '../pages/TheDO.vue';
+// import TheDO from '../pages/TheDO.vue';
 import AffiliateNews from '../pages/AffiliateNews.vue';
 import AoaGeneral from '../pages/AoaGeneral.vue';
 import Newsletter from '../pages/Newsletter.vue';
@@ -24,73 +24,6 @@ const router = createRouter({
       path: '/',
       name: 'Home',
       component: Home,
-    },
-    {
-      path: '/the-do',
-      name: 'The DO',
-      component: () => import('../pages/TheDO.vue'),
-      beforeEnter: navigateToDefault('/the-do', 'Date'),
-      children: [
-        //        {
-        //          path: 'top-story',
-        //          name: 'Top story',
-        //          component: () => import('../components/the-do/TopStory.vue'),
-        //        },
-        //        {
-        //          path: 'feature',
-        //          name: 'Feature',
-        //          component: () => import('../components/the-do/Feature.vue'),
-        //        },
-        {
-          path: 'date',
-          name: 'Date',
-          component: () => import('../components/the-do/Date.vue'),
-          meta: {
-            nickname: 'Date',
-          },
-        },
-      ],
-    },
-    {
-      path: '/affiliate-news',
-      name: 'Affiliate News',
-      component: AffiliateNews,
-      beforeEnter: navigateToDefault('/affiliate-news', 'News item'),
-      children: [
-        {
-          path: 'news-item',
-          name: 'News item',
-          component: () => import('../components/affiliates/NewsItem.vue'),
-          meta: {
-            nickname: 'News item',
-          },
-        },
-        {
-          path: 'news-item-with-image',
-          name: 'News item with image',
-          component: () =>
-            import('../components/affiliates/NewsItemWithImage.vue'),
-          meta: {
-            nickname: 'News item with image',
-          },
-        },
-        {
-          path: 'section-head',
-          name: 'Section head',
-          component: () => import('../components/affiliates/SectionHead.vue'),
-          meta: {
-            nickname: 'Section head',
-          },
-        },
-        {
-          path: 'toc',
-          name: 'Affiliates TOC',
-          component: () => import('../components/affiliates/Toc.vue'),
-          meta: {
-            nickname: 'TOC',
-          },
-        },
-      ],
     },
     {
       path: '/aoa-general',
@@ -160,6 +93,74 @@ const router = createRouter({
         //name: 'Spacer',
         //component: () => import('../components/aoa-general/Spacer.vue'),
         //},
+      ],
+    },
+
+    // {
+    //   path: '/the-do',
+    //   name: 'The DO',
+    //   component: () => import('../pages/TheDO.vue'),
+    //   beforeEnter: navigateToDefault('/the-do', 'Date'),
+    //   children: [
+    //     //        {
+    //     //          path: 'top-story',
+    //     //          name: 'Top story',
+    //     //          component: () => import('../components/the-do/TopStory.vue'),
+    //     //        },
+    //     //        {
+    //     //          path: 'feature',
+    //     //          name: 'Feature',
+    //     //          component: () => import('../components/the-do/Feature.vue'),
+    //     //        },
+    //     {
+    //       path: 'date',
+    //       name: 'Date',
+    //       component: () => import('../components/the-do/Date.vue'),
+    //       meta: {
+    //         nickname: 'Date',
+    //       },
+    //     },
+    //   ],
+    // },
+    {
+      path: '/affiliate-news',
+      name: 'Affiliate News',
+      component: AffiliateNews,
+      beforeEnter: navigateToDefault('/affiliate-news', 'News item'),
+      children: [
+        {
+          path: 'news-item',
+          name: 'News item',
+          component: () => import('../components/affiliates/NewsItem.vue'),
+          meta: {
+            nickname: 'News item',
+          },
+        },
+        {
+          path: 'news-item-with-image',
+          name: 'News item with image',
+          component: () =>
+            import('../components/affiliates/NewsItemWithImage.vue'),
+          meta: {
+            nickname: 'News item with image',
+          },
+        },
+        {
+          path: 'section-head',
+          name: 'Section head',
+          component: () => import('../components/affiliates/SectionHead.vue'),
+          meta: {
+            nickname: 'Section head',
+          },
+        },
+        {
+          path: 'toc',
+          name: 'Affiliates TOC',
+          component: () => import('../components/affiliates/Toc.vue'),
+          meta: {
+            nickname: 'TOC',
+          },
+        },
       ],
     },
     {
