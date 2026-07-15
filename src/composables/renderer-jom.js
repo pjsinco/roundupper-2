@@ -1,7 +1,7 @@
-import { useAoaGeneralRenders } from '@/composables/styles-base-aoa-general';
+import { useJomRenders } from '@/composables/styles-base-jom';
 
 export function useRendererForJom() {
-  const { paragraph, heading, link, image, list } = useAoaGeneralRenders();
+  const { paragraph, heading, link, image, list } = useJomRenders();
 
   const renderer = {
     paragraph,

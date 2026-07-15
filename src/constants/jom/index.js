@@ -1,3 +1,5 @@
+import Styles from './styles';
+
 export default {
   BLOCK_TYPES: [
     {
@@ -95,4 +97,5 @@ export default {
       value: 'uncategorized',
     },
   ],
+  Styles,
 };

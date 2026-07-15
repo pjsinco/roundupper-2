@@ -49,6 +49,7 @@ export default {
       if (newValue === true) {
         nextTick(() => {
           imgSrcInput.value.focus();
+          imgSrcInput.value.select();
         });
       }
     });
