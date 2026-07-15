@@ -222,6 +222,14 @@ const router = createRouter({
             nickname: 'Article',
           },
         },
+        {
+          path: 'intro',
+          name: 'Intro',
+          component: () => import('../components/jom/Intro.vue'),
+          meta: {
+            nickname: 'Intro',
+          },
+        },
       ],
     },
   ],

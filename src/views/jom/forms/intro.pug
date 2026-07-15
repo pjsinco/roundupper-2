@@ -1,0 +1,32 @@
+template(v-slot:form)
+  div.row
+    div.col-xs-12
+      h1.component__title Text
+  div.row
+    div.col-xs-12
+      div.form-group
+        label(for="input") Text (in Markdown)
+        textarea(id="input" v-model="input").form-control
+
+  div.row
+    div.col-xs-12
+      div.form-group
+        button(class="btn btn-default pull-right" id="showAdForm" v-on:click="showAdForm = !showAdForm" v-text="showAdForm ? 'Remove Advertisement' : 'Add Advertisement'")
+
+  transition(name="fade")
+    div.row(class="image-group" id="imageGroup" v-if="showAdForm")
+      div.col-xs-12
+        div.form-group
+          label(for="imageUrl") Ad Image URL
+          input(type="text" id="imageUrl" ref="srcInput" v-model="imageUrl").form-control
+          p.help-block Image size: 480px x 240px
+      div.col-xs-12
+        div.form-group
+          label(for="imageLink") Ad Image link
+          input(type="text" id="imageLink" v-model="imageLink").form-control
+      div.col-xs-12
+        div.form-group
+          label(for="imageAltText") Ad Image alt text
+          input(type="text" id="imageAltText" v-model="imageAltText").form-control
+
+  include ../../includes/copy-button
