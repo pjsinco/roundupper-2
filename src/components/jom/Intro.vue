@@ -19,12 +19,32 @@ export default {
     const input = ref(defaultInput);
 
     const showAdForm = ref(false);
-    const imgSrcInput = useTemplateRef('srcInput');
+    const adImgSrcInput = useTemplateRef('adImgSrcInput');
+    const coverImgSrcInput = useTemplateRef('coverImgSrcInput');
 
-    const imageAlt = ref('');
-    const imageLink = ref('');
-    const imageUrl = ref(
+    const options = [
+      {
+        name: 'New Issue',
+        short: 'new-issue',
+      },
+      {
+        name: 'Advance Articles',
+        short: 'advance-articles',
+      },
+    ];
+
+    const selected = ref(options[0].short);
+
+    const adImageAlt = ref('');
+    const adImageLink = ref('');
+    const adImageUrl = ref(
       'https://resources.osteopathic.org/l/979203/2026-07-15/rhy82/979203/1784133953q1w06nPi/placeholder_ad_180x180.png'
+    );
+
+    const coverImageAlt = ref('');
+    const coverImageLink = ref('');
+    const coverImageUrl = ref(
+      'https://resources.osteopathic.org/l/979203/2026-07-15/rhzg5/979203/17841422263E2IJGrW/placeholder_jom_cover.png'
     );
 
     const { renderer } = useRendererForJom();
@@ -48,8 +68,9 @@ export default {
     watch(showAdForm, (newValue) => {
       if (newValue === true) {
         nextTick(() => {
-          imgSrcInput.value.focus();
-          imgSrcInput.value.select();
+          adImgSrcInput.value.focus();
+
+          adImgSrcInput.value.select();
         });
       }
     });
@@ -75,10 +96,14 @@ export default {
       output,
       reset,
       copy,
+      selected,
       showAdForm,
-      imageAlt,
-      imageLink,
-      imageUrl,
+      adImageAlt,
+      adImageLink,
+      adImageUrl,
+      coverImageAlt,
+      coverImageLink,
+      coverImageUrl,
     };
   },
 };

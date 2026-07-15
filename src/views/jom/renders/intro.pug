@@ -13,14 +13,28 @@ template(v-slot:render-container)
                       div#rendered
                         table(border="0" cellpadding="0" cellspacing="0" role="presentation" style="" width="100%")
                           tbody
+                            tr(v-if="selected === 'new-issue'")
+                              td(align="center" class="fluid-image" style="font-size:0px;padding:16px 12px 48px 12px;word-break:break-word;")
+                                table(border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:collapse;border-spacing:0px;")
+                                  tbody
+                                    tr
+                                      td(class="fluid-image" style="width:315px;")
+                                        a(:href="coverImageLink" target="_blank")
+                                          img(:alt="coverImageAlt" height="auto" :src="coverImageUrl" style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;" width="315")
+
+                            tr(v-if="selected === 'advance'")
+                              td(align="center" style="font-size:0px;padding:10px 25px 48px 25px;word-break:break-word;" class="fluid-image")
+                                div(style="font-family:Georgia, serif;font-size:44px;font-style:italic;line-height:54px;text-align:center;color:#2C3A81;")
+                                  | Advance Articles
+
                             tr
                               td(class="fluid-image" pardot-region="" style="font-size: 0px; padding: 0px 0px; word-break: break-word;")
                                 table(v-if="showAdForm" align="right" cellpadding="0" cellspacing="0" class="image" style="border: medium; border-collapse: collapse;")
                                   tbody
                                     tr
                                       td(class="fluid-image" style="padding: 3px 0px 18px 24px; line-height: 1px;")
-                                        a(:href="imageLink" style="text-decoration: none;" target="_blank")
-                                          img(align="right" :alt="imageAlt" border="0" class="img" height="auto" :src="imageUrl" style="margin: 0px; text-align: right;" width="180")
+                                        a(:href="adImageLink" style="text-decoration: none;" target="_blank")
+                                          img(align="right" :alt="adImageAlt" border="0" class="img" height="auto" :src="adImageUrl" style="margin: 0px; text-align: right;" width="180")
                                 div(style="font-family: Georgia, serif; font-size: 18px; font-weight: normal; line-height: 28px; text-align: left; color: #222222;")
                                   p(style="margin: 0 0 0 0" v-html="output")
                             tr
