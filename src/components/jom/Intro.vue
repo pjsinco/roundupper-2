@@ -2,9 +2,7 @@
 import { ref, onMounted, computed, watch, useTemplateRef, nextTick } from 'vue';
 import Workspace from '@/components/Workspace.vue';
 import { copyHtml, copyText } from '@/composables/useButtonFunctions';
-import { replaceMsoPlaceholders, replaceMsoPaddingAlt } from '@/utils';
-
-// TODO just for now
+// import { replaceMsoPlaceholders, replaceMsoPaddingAlt } from '@/utils';
 import { useRendererForJom } from '@/composables/renderer-jom';
 import { editorFromTextArea } from '@/composables/useEditorFromTextArea';
 import { marked } from 'marked';

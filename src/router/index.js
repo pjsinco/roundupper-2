@@ -230,6 +230,14 @@ const router = createRouter({
             nickname: 'Intro',
           },
         },
+        {
+          path: 'top-ad',
+          name: 'Top ad',
+          component: () => import('../components/jom/TopAd.vue'),
+          meta: {
+            nickname: 'Top ad',
+          },
+        },
       ],
     },
   ],
