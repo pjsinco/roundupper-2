@@ -96,7 +96,7 @@ template(v-slot:form)
                     div.form-group
                       label(for="blockType") Block Type
                       select(id="blockType" v-model="selectedBlockType").form-control
-                        option(v-for="option in blockTypeOptions" :selected="selectedBlockType == option.value" :value="option.value" :key="option.value") {{ option.name }}
+                        option(v-for="option in blockTypeOptions" :disabled="!option.available" :selected="selectedBlockType == option.value" :value="option.value" :key="option.value") {{ option.name }}
                     BlockGeneral(v-if="selectedBlockType === 'general'" :title="blockGeneralTitle" :text="blockGeneralText" @update:title="blockGeneralTitle = $event" @update:text="blockGeneralText = $event")
 
 

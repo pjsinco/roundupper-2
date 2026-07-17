@@ -5,14 +5,17 @@ export default {
     {
       name: 'General',
       value: 'general',
+      available: true,
     },
     {
       name: 'Three Numbers',
       value: 'three-numbers',
+      available: false,
     },
     {
       name: 'List',
       value: 'list',
+      available: false,
     },
   ],
   CATEGORIES: [
