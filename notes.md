@@ -39,3 +39,11 @@ $ curl --request POST -H "Content-Type: application/json" -d '{"url": "https://r
 
 ### Mon Mar 23 10:24:41 2026 CDT
 [Bootstrap 3.3](https://getbootstrap.com/docs/3.3/)
+
+### Thu Mar 12 08:47:03 2026 CDT
+Quick tmux reference:
+
+* Ctrl-b ←/→ — switch panes
+* Ctrl-b z — zoom current pane to full screen (hit again to unzoom)
+* Ctrl-b [ — scroll mode (navigate with vim keys, q to exit)
+* Ctrl-b d — detach (session stays alive, reattach with tmux attach -t dev)

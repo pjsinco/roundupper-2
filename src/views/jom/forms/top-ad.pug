@@ -1,0 +1,22 @@
+template(v-slot:form)
+  div.row
+    div.col-xs-12
+      h1.component__title Top ad
+  div.row(id="adImageGroup")
+    div.col-xs-12
+      div.form-group
+        label(for="adImageUrl") Ad Image URL
+        input(type="text" id="adImageUrl" ref="adImgSrcInput" v-model="adImageUrl" @focus="$event.target.select()").form-control
+        p.help-block Image size: 624 x 90
+    div.col-xs-12
+      div.form-group
+        label(for="adImageLink") Ad Image link
+        input(type="text" id="adImageLink" v-model="adImageLink").form-control
+    div.col-xs-12
+      div.form-group
+        label(for="adImageAlt") Ad Image Alt Text
+        input(type="text" id="adImageAlt" v-model="adImageAlt").form-control
+
+  div.row
+    div.col-xs-12
+      include ../../includes/copy-button

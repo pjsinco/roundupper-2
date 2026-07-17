@@ -9,6 +9,7 @@ export default {
 </script>
 
 <template lang="pug">
+
   RouterView
 </template>
 

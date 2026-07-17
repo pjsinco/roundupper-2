@@ -1,6 +1,7 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
 import Home from '../pages/Home.vue';
 // import TheDO from '../pages/TheDO.vue';
+import Jom from '../pages/Jom.vue';
 import AffiliateNews from '../pages/AffiliateNews.vue';
 import AoaGeneral from '../pages/AoaGeneral.vue';
 import Newsletter from '../pages/Newsletter.vue';
@@ -206,6 +207,38 @@ const router = createRouter({
         //  name: 'Button',
         //  component: () => import('../components/aoa-general/Button.vue'),
         //},
+      ],
+    },
+    {
+      path: '/jom',
+      name: 'JOM',
+      component: () => import('../pages/Jom.vue'),
+      beforeEnter: navigateToDefault('/jom', 'Article'),
+      children: [
+        {
+          path: 'article',
+          name: 'Article',
+          component: () => import('../components/jom/Article.vue'),
+          meta: {
+            nickname: 'Article',
+          },
+        },
+        {
+          path: 'intro',
+          name: 'Intro',
+          component: () => import('../components/jom/Intro.vue'),
+          meta: {
+            nickname: 'Intro',
+          },
+        },
+        {
+          path: 'top-ad',
+          name: 'Top ad',
+          component: () => import('../components/jom/TopAd.vue'),
+          meta: {
+            nickname: 'Top ad',
+          },
+        },
       ],
     },
   ],

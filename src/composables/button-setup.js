@@ -47,7 +47,7 @@ export function useButtonSetup(args = {}) {
         `<!--[if mso | IE]></td></tr></table><![endif]-->`,
       ];
 
-      const regex = /<span.?id="mso_\d"><\/span>/gm;
+      const regex = /<span[^>]*id="mso_\d+"[^>]*>[\s\S]*?<\/span>/gm;
       const targets = [...html.matchAll(regex)];
 
       console.log(
@@ -66,6 +66,7 @@ export function useButtonSetup(args = {}) {
     const addMsoStyle = (html) => {
       html = replaceMsoPlaceholders(html);
 
+      // TODO - use replaceMsoPaddingAlt() in utils
       const fragment = new DocumentFragment();
       const div = document.createElement('div');
       div.innerHTML = html;

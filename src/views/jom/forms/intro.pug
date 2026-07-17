@@ -1,0 +1,58 @@
+template(v-slot:form)
+  div.row
+    div.col-xs-12
+      h1.component__title Intro
+
+  div.row
+    div.col-xs-12
+      div.form-group
+        label(for="select") Intro Type
+        select(id="select" v-model="selected").form-control
+          option(selected value="new-issue") New Issue
+          option(value="advance-articles") Advance Articles
+
+  transition(name="fade")
+    div.row(class="image-group" id="coverImageGroup" v-if="selected === 'new-issue'")
+      div.col-xs-12
+        div.form-group
+          label(for="coverImageUrl") Cover Image URL
+          input(type="text" id="coverImageUrl" ref="coverImgSrcInput" v-model="coverImageUrl" @focus="$event.target.select()").form-control
+          p.help-block Image size: 480px x 240px
+      div.col-xs-12
+        div.form-group
+          label(for="coverImageLink") Cover Image Link
+          input(placeholder="Link to issue on JOM website" type="text" id="coverImageLink" v-model="coverImageLink").form-control
+      div.col-xs-12
+        div.form-group
+          label(for="coverImageAlt") Cover Image Alt Text
+          input(type="text" id="coverImageAlt" v-model="coverImageAlt").form-control
+
+
+  div.row
+    div.col-xs-12
+      div.form-group
+        label(for="input") Text (in Markdown)
+        textarea(id="input" v-model="input" ref="textArea").form-control
+
+  div.row
+    div.col-xs-12
+      div.form-group
+        button(class="btn btn-default pull-right" id="showAdForm" v-on:click="showAdForm = !showAdForm" v-text="showAdForm ? 'Remove Advertisement' : 'Add Advertisement'")
+
+  transition(name="fade")
+    div.row(class="image-group" id="adImageGroup" v-if="showAdForm")
+      div.col-xs-12
+        div.form-group
+          label(for="adImageUrl") Ad Image URL
+          input(type="text" id="adImageUrl" ref="adImgSrcInput" v-model="adImageUrl").form-control
+          p.help-block Image size: 480px x 240px
+      div.col-xs-12
+        div.form-group
+          label(for="adImageLink") Ad Image link
+          input(type="text" id="adImageLink" v-model="adImageLink").form-control
+      div.col-xs-12
+        div.form-group
+          label(for="adImageAlt") Ad Image Alt Text
+          input(type="text" id="adImageAlt" v-model="adImageAlt").form-control
+
+  include ../../includes/copy-button

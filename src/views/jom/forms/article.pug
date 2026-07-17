@@ -1,0 +1,108 @@
+template(v-slot:form)
+  div.row
+    div.col-xs-12
+      h1.component__title Article
+
+  Tabs
+    Tab(title="Main")
+      div(v-if="!fetched").row
+        div.col-xs-12
+          div.form-group
+            label(for="idToFetch") Abstract ID
+            input(id="idToFetch" v-model="idToFetch" ref="idInput").form-control
+          div.form-group.clearfix
+            button(type="submit" @click="handleSubmit").btn.btn-sm.btn-default.pull-right Autofill from ID
+
+      div(v-if="fetchError != ''").row
+        div.col-xs-12
+          p(class="text-danger bg-danger" style="padding: 10px;") {{ fetchError }}
+
+      div.row
+        div.col-xs-6
+          div.form-group
+            label(for="select") Category
+            select(id="select" v-model="selectedCat").form-control
+              option(v-for="option in categoryOptions" :selected="selectedCat == option.value" :value="option.value" :key="option.value") {{ option.name }}
+        div.col-xs-6
+          div.form-group
+            label(for="type") Type
+            input(type="text" id="type" v-model="type").form-control
+
+        div.col-xs-12
+          div.form-group
+            label(for="title") Title
+            input(type="text" id="title" v-model="title").form-control
+
+        div.col-xs-12
+          div.form-group
+            label(for="authors") Authors
+            input(type="text" id="authors" v-model="authors").form-control
+
+        div.col-xs-12
+          div.form-group
+            label(for="description") Description
+            textarea(rows="3" id="description" v-model="description").form-control
+
+        div.col-xs-12
+          div.form-group
+            label(for="link") Link
+            input(type="text" id="link" v-model="link").form-control
+
+        div.col-xs-12
+          div.form-group
+            button(class="btn btn-default pull-right" id="showImageForm" v-on:click="showImageForm = !showImageForm" v-text="showImageForm ? 'Remove Image' : 'Add Image'")
+
+      transition(name="fade")
+        div.row(class="image-group" id="imageGroup" v-if="showImageForm")
+          div.col-xs-12
+            div.form-group
+              label(for="imageUrl") Image URL
+              input(type="text" id="imageUrl" ref="srcInput" v-model="imageUrl").form-control
+              p.help-block Image size: 480px x 240px
+          div.col-xs-12
+            div.form-group
+              label(for="caption") Caption
+              input(type="text" id="caption" v-model="caption").form-control
+          div.col-xs-12
+            div.form-group
+              label(for="imageLink") Image link
+              input(type="text" id="imageLink" v-model="imageLink").form-control
+          div.col-xs-12
+            div.form-group
+              label(for="imageAlt") Image alt text
+              input(type="text" id="imageAlt" v-model="imageAlt").form-control
+
+    Tab(title="Extras")
+      div.row
+        div.col-xs-12
+          Option
+            template(v-slot:head)
+              | Divider
+            template(v-slot:tail)
+              Switch(v-model="dividerBelow")
+          Option(:should-show="includeBlock")
+            template(v-slot:head)
+              | Block
+            template(v-slot:tail)
+              div
+                ButtonLink(@click="includeBlock = true")
+                  template(v-slot:text)
+                    | Add
+            template(v-slot:show)
+              div.row
+                div.col-xs-12
+                  div(style="margin-top: -1px; margin-bottom: -1px").item-group
+                    h4(style="margin-top: 13px;") Block #[CloseButton(@click="includeBlock = false")]
+                    div.form-group
+                      label(for="blockType") Block Type
+                      select(id="blockType" v-model="selectedBlockType").form-control
+                        option(v-for="option in blockTypeOptions" :disabled="!option.available" :selected="selectedBlockType == option.value" :value="option.value" :key="option.value") {{ option.name }}
+                    BlockGeneral(v-if="selectedBlockType === 'general'" :title="blockGeneralTitle" :text="blockGeneralText" @update:title="blockGeneralTitle = $event" @update:text="blockGeneralText = $event")
+
+
+
+
+
+
+
+  include ../../includes/copy-button

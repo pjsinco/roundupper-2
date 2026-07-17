@@ -7,7 +7,7 @@
  */
 export function replaceMsoPlaceholders(replacements = [], loops = 1) {
   return function (html) {
-    const regex = /<span.?id="mso_\d"><\/span>/gm;
+    const regex = /<span[^>]*id="mso_\d+"[^>]*>[\s\S]*?<\/span>/gm;
     const targets = [...html.matchAll(regex)];
 
     console.log(
@@ -23,5 +23,29 @@ export function replaceMsoPlaceholders(replacements = [], loops = 1) {
     }
 
     return html;
+  };
+}
+
+/**
+ * Fix the automatic stripping of 'mso-padding-alt' in style attributes
+ *
+ */
+export function replaceMsoPaddingAlt() {
+  return function (html) {
+    const fragment = new DocumentFragment();
+    const div = document.createElement('div');
+    div.innerHTML = html;
+    fragment.append(div);
+
+    const tdEl = fragment.getElementById('msoPadding');
+
+    if (tdEl !== null) {
+      // now we can use DOM methods
+      const styleAttr = tdEl.getAttribute('style');
+      const newStyleAttr = `${styleAttr} mso-padding-alt: 10px 25px;`;
+      tdEl.setAttribute('style', newStyleAttr);
+    }
+
+    return fragment.firstElementChild.innerHTML;
   };
 }
