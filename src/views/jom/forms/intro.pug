@@ -9,7 +9,7 @@ template(v-slot:form)
         label(for="select") Intro Type
         select(id="select" v-model="selected").form-control
           option(selected value="new-issue") New Issue
-          option(value="advance") Advance Articles
+          option(value="advance-articles") Advance Articles
 
   transition(name="fade")
     div.row(class="image-group" id="coverImageGroup" v-if="selected === 'new-issue'")
@@ -32,7 +32,7 @@ template(v-slot:form)
     div.col-xs-12
       div.form-group
         label(for="input") Text (in Markdown)
-        textarea(id="input" v-model="input").form-control
+        textarea(id="input" v-model="input" ref="textArea").form-control
 
   div.row
     div.col-xs-12

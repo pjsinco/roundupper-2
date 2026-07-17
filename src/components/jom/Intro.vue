@@ -2,7 +2,7 @@
 import { ref, onMounted, computed, watch, useTemplateRef, nextTick } from 'vue';
 import Workspace from '@/components/Workspace.vue';
 import { copyHtml, copyText } from '@/composables/useButtonFunctions';
-// import { replaceMsoPlaceholders, replaceMsoPaddingAlt } from '@/utils';
+import { replaceMsoPlaceholders } from '@/utils';
 import { useRendererForJom } from '@/composables/renderer-jom';
 import { editorFromTextArea } from '@/composables/useEditorFromTextArea';
 import { marked } from 'marked';
@@ -13,7 +13,14 @@ export default {
   },
 
   setup() {
-    const defaultInput = `Nullam quis risus eget urna mollis ornare vel eu leo. Cras mattis consectetur purus sit amet fermentum. Donec id elit non mi porta gravida at eget metus. Sed posuere consectetur est at lobortis. Maecenas faucibus mollis interdum. Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam.\n`;
+    const defaultInput = `Nullam quis risus eget urna mollis ornare vel eu leo. Cras mattis consectetur purus sit amet fermentum. Donec id elit non mi porta gravida at eget metus. Sed posuere consectetur est at lobortis. Maecenas faucibus mollis interdum. Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam.`;
+    const defaultInputAdvance = `The following [Advance Articles](https://resources.osteopathic.org/jom/advance) are available to read now in full (and will be featured again in an upcoming issue of *Journal of Osteopathic Medicine*).\n<br><br>\nGet CME credits after reading *JOM*! Select *JOM* articles are accompanied by a CME exam, [click here](https://elearning.osteopathic.org/Public/Catalog/ChefView.aspx?Option=307) to begin receiving CME credits after you read the journal.`;
+
+    const defaults = {
+      'new-issue': defaultInput,
+      'advance-articles': defaultInputAdvance,
+    };
+
     const input = ref(defaultInput);
 
     const showAdForm = ref(false);
@@ -47,6 +54,8 @@ export default {
 
     const { renderer } = useRendererForJom();
 
+    let editor = null;
+
     marked.use({ renderer });
 
     marked.setOptions({
@@ -60,8 +69,15 @@ export default {
 
     function initEditor() {
       const el = document.getElementById('input');
-      const editor = editorFromTextArea(input, el, 'calc(25vh)');
+      editor = editorFromTextArea(input, el, '200px');
     }
+
+    watch(selected, (newValue) => {
+      console.log('newValue', newValue);
+      input.value = newValue;
+      const text = defaults[newValue] ? defaults[newValue] : '';
+      editor.setValue(text);
+    });
 
     watch(showAdForm, (newValue) => {
       if (newValue === true) {
@@ -74,7 +90,12 @@ export default {
     });
 
     function copy() {
-      copyHtml();
+      const replacements = [
+        '<!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="i-body-column-outlook" style="vertical-align:top;width:600px;" ><![endif]-->',
+        '<!--[if mso | IE]></td></tr></table><![endif]-->',
+      ];
+
+      copyHtml(replaceMsoPlaceholders(replacements));
     }
 
     function copyTextVersion() {

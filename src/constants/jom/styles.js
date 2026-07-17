@@ -92,7 +92,7 @@ export default {
 
   LINK_STYLE: [
     `color: ${base.colors.link}`,
-    'font-weight: bold',
+    'font-weight: normal',
     'text-decoration: underline',
   ],
 };

@@ -133,8 +133,9 @@ export default {
       ];
 
       // our 'mso-padding-alt' is getting stripped
-      const msoFn = replaceMsoPlaceholders(replacements);
-      copyHtml(replaceMsoPaddingAlt(msoFn));
+      // const msoFn = replaceMsoPlaceholders(replacements);
+      // copyHtml(replaceMsoPaddingAlt(msoFn));
+      copyHtml(replaceMsoPlaceholders(replacements));
     }
 
     function copyTextVersion() {
