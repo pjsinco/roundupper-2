@@ -6,7 +6,7 @@ template(v-slot:form)
     div.col-xs-12
       div.form-group
         label(for="adImageUrl") Ad Image URL
-        input(type="text" id="adImageUrl" ref="adImgSrcInput" v-model="adImageUrl").form-control
+        input(type="text" id="adImageUrl" ref="adImgSrcInput" v-model="adImageUrl" @focus="$event.target.select()").form-control
         p.help-block Image size: 624 x 90
     div.col-xs-12
       div.form-group
@@ -14,8 +14,8 @@ template(v-slot:form)
         input(type="text" id="adImageLink" v-model="adImageLink").form-control
     div.col-xs-12
       div.form-group
-        label(for="adImageAltText") Ad Image Alt Text
-        input(type="text" id="adImageAltText" v-model="adImageAltText").form-control
+        label(for="adImageAlt") Ad Image Alt Text
+        input(type="text" id="adImageAlt" v-model="adImageAlt").form-control
 
   div.row
     div.col-xs-12

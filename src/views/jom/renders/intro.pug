@@ -22,7 +22,7 @@ template(v-slot:render-container)
                                         a(:href="coverImageLink" target="_blank")
                                           img(:alt="coverImageAlt" height="auto" :src="coverImageUrl" style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;" width="315")
 
-                            tr(v-if="selected === 'advance'")
+                            tr(v-else-if="selected === 'advance-articles'")
                               td(align="center" style="font-size:0px;padding:10px 25px 48px 25px;word-break:break-word;" class="fluid-image")
                                 div(style="font-family:Georgia, serif;font-size:44px;font-style:italic;line-height:54px;text-align:center;color:#2C3A81;")
                                   | Advance Articles
@@ -43,4 +43,5 @@ template(v-slot:render-container)
                                   tbody
                                     tr
                                       td(class="fluid-image" height="3" style="background:#E9EEFA; line-height:3px; font-size:0; mso-line-height-rule:exactly;")
-                                          | &nbsp;
+                                        | &nbsp;
+              span#mso_1

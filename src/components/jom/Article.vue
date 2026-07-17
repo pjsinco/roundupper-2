@@ -133,9 +133,8 @@ export default {
       ];
 
       // our 'mso-padding-alt' is getting stripped
-      // const msoFn = replaceMsoPlaceholders(replacements);
-      // copyHtml(replaceMsoPaddingAlt(msoFn));
-      copyHtml(replaceMsoPlaceholders(replacements));
+      const msoFn = replaceMsoPlaceholders(replacements);
+      copyHtml(replaceMsoPaddingAlt(msoFn));
     }
 
     function copyTextVersion() {
@@ -185,7 +184,6 @@ export default {
 
         fetched.value = true;
       } catch (err) {
-        /* handle error */
         console.error(err);
         fetchError.value = 'Error fetching article';
       } finally {
