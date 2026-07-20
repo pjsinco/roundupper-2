@@ -11,7 +11,7 @@ import CloseButton from '@/components/CloseButton.vue';
 import LoadingSpinner from '@/components/LoadingSpinner.vue';
 import BlockGeneral from '@/components/jom/BlockGeneral.vue';
 import { copyHtml, copyText } from '@/composables/useButtonFunctions';
-import { replaceMsoPlaceholders, replaceMsoPaddingAlt } from '@/utils';
+import { replaceMsoPlaceholders, replaceMsoPaddingAlt, pipe } from '@/utils';
 
 export default {
   components: {
@@ -132,9 +132,9 @@ export default {
         '<!--[if mso | IE]></td></tr></table><![endif]-->',
       ];
 
-      // our 'mso-padding-alt' is getting stripped
-      const msoFn = replaceMsoPlaceholders(replacements);
-      copyHtml(replaceMsoPaddingAlt(msoFn));
+      copyHtml(
+        pipe(replaceMsoPaddingAlt(), replaceMsoPlaceholders(replacements))
+      );
     }
 
     function copyTextVersion() {

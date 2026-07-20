@@ -1,3 +1,8 @@
+export const pipe =
+  (...fns) =>
+  (html) =>
+    fns.reduce((acc, fn) => fn(acc), html);
+
 /**
  *
  * Replaces instances of span#mso_[n].
@@ -8,7 +13,7 @@
 export function replaceMsoPlaceholders(replacements = [], loops = 1) {
   return function (html) {
     const regex = /<span[^>]*id="mso_\d+"[^>]*>[\s\S]*?<\/span>/gm;
-    const targets = [...html.matchAll(regex)];
+    const targets = [...html.matchAll(regex)].map((m) => m[0]);
 
     console.log(
       `Found ${targets.length} targets for ${replacements.length} replacements`
